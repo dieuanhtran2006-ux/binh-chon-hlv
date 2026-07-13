@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Bình Chọn HLV Taekwondo 2026 🌟</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FEF08A;
+        }
+        /* Thêm đoạn này vào phần <style> để hiệu ứng trôi liên tục được mượt, không bị khựng khúc */
+.swiper-wrapper {
+    transition-timing-function: linear !important;
+}
+        /* HIỆU ỨNG THẺ NỔI BẬT Ở GIỮA SLIDE */
+        .swiper-slide {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.85);
+            opacity: 0.4;
+        }
+        .swiper-slide-active {
+            transform: scale(1.05);
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #EF4444 !important;
+            width: 24px !important;
+            border-radius: 4px !important;
+        }
+
+        /* Thanh cuộn mượt cho Pop-up */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4 md:p-8">
+
+    <!-- TIÊU ĐỀ -->
+    <header class="text-center my-6 w-full max-w-5xl">
+        <h1 class="text-4xl md:text-5xl font-black text-blue-700 drop-shadow-[0_4px_0_rgba(239,68,68,1)] tracking-wide uppercase">
+            🥋 Bình Chọn HLV Taekwondo 🥋
+        </h1>
+        <p class="text-slate-800 font-bold mt-4 text-lg bg-white/70 inline-block px-6 py-2 rounded-full border-2 border-slate-900 shadow-sm">
+            Hệ thống tự động lướt | Nhấn vào thẻ để xem chi tiết! 🔥
+        </p>
+    </header>
+
+    <!-- BẢNG XẾP HẠNG (LEADERBOARD) -->
+    <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-3xl p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10">
+        <h2 class="text-2xl font-black text-red-600 mb-4 text-center flex justify-center items-center gap-2">
+            🏆 Bảng Xếp Hạng Tạm Thời 🏆
+        </h2>
+        <div class="space-y-3">
+            <div class="flex items-center justify-between bg-yellow-100 border-2 border-yellow-400 p-3 rounded-xl">
+                <div class="flex items-center gap-3 font-bold text-slate-800">
+                    <span class="bg-yellow-400 text-yellow-900 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">1</span>
+                    HLV Nguyễn Thành Đạt
+                </div>
+                <span class="text-red-600 font-black">1,245 🗳️</span>
+            </div>
+            <div class="flex items-center justify-between bg-slate-100 border-2 border-slate-300 p-3 rounded-xl">
+                <div class="flex items-center gap-3 font-bold text-slate-700">
+                    <span class="bg-slate-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">2</span>
+                    HLV Hoàng Văn Hiếu
+                </div>
+                <span class="text-blue-600 font-black">982 🗳️</span>
+            </div>
+            <div class="flex items-center justify-between bg-orange-50 border-2 border-orange-300 p-3 rounded-xl">
+                <div class="flex items-center gap-3 font-bold text-slate-700">
+                    <span class="bg-orange-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">3</span>
+                    HLV Nguyễn Ngọc Ánh
+                </div>
+                <span class="text-green-600 font-black">845 🗳️</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE THẺ HLV (TỰ ĐỘNG CHẠY) -->
+    <main class="w-full max-w-6xl overflow-hidden pb-12">
+        <div class="swiper mySwiper !overflow-visible">
+            <div class="swiper-wrapper" id="slider-container">
+                <!-- Dữ liệu HLV tự động đổ vào đây -->
+            </div>
+            <!-- Chấm điều hướng ở dưới -->
+            <div class="swiper-pagination !-bottom-8"></div>
+        </div>
+    </main>
+
+    <!-- MÀN HÌNH CHI TIẾT POP-UP -->
+    <div id="detail-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white border-4 border-slate-900 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-[0_12px_0_0_rgba(255,255,255,0.2)]">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white font-black text-2xl border-2 border-slate-900 w-10 h-10 rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform z-10">
+                X
+            </button>
+
+            <div class="flex flex-col md:flex-row gap-6 mt-6 md:mt-2">
+                <div class="w-full md:w-2/5 flex justify-center items-start">
+                    <img id="modal-img" src="" alt="" class="w-full max-w-[300px] aspect-[3/4] object-cover rounded-2xl border-4 border-slate-800 shadow-lg">
+                </div>
+
+                <div class="w-full md:w-3/5 flex flex-col gap-4">
+                    <h2 id="modal-name" class="text-3xl font-black text-blue-700 border-b-4 border-slate-200 pb-2"></h2>
+                    
+                    <div class="bg-purple-100 border-2 border-purple-400 p-4 rounded-xl relative">
+                        <span class="text-4xl absolute -top-4 -left-2">💬</span>
+                        <p id="modal-quote" class="text-slate-800 font-bold italic ml-4"></p>
+                    </div>
+
+                    <div class="bg-green-100 border-2 border-green-400 p-4 rounded-xl">
+                        <span class="block text-xs font-black text-green-800 uppercase mb-1">🏅 Hồ Sơ Chuyên Môn</span>
+                        <p id="modal-profile" class="text-slate-700 font-medium"></p>
+                    </div>
+
+                    <div class="mt-auto bg-amber-100 border-4 border-dashed border-amber-400 p-4 rounded-2xl flex flex-col sm:flex-row items-center gap-4">
+                        <div class="bg-white p-2 rounded-xl border-2 border-slate-800 flex-shrink-0">
+                            <img id="modal-qr" src="" alt="QR" class="w-32 h-32">
+                        </div>
+                        <div class="text-center sm:text-left w-full">
+                            <p class="text-sm font-bold text-amber-900 mb-2">Quét mã QR hoặc nhấn nút bên dưới để bình chọn nhé! 👇</p>
+                            <a id="modal-vote-btn" href="#" target="_blank" class="block text-center bg-red-500 hover:bg-red-600 active:scale-95 text-white font-black py-3 px-6 rounded-xl border-2 border-slate-900 shadow-[0_4px_0_0_rgba(30,41,59,1)] transition-all uppercase">
+                                👉 Bấm Vào Đây Để Vote 👈
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-sm font-bold text-slate-600 my-4">
+        © 2026 Trang web bình chọn siêu cấp dành cho các bạn nhỏ.
+    </footer>
+
+    <!-- Thư viện Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        const coachesData = [
+            {
+                name: "HLV Nguyễn Thành Đạt",
+                image: "./image/dat.jpg", 
+                quote: "Hãy trao cho tôi niềm tin vững chắc, tôi sẽ huấn luyện bạn thành một nhà vô địch",
+                profile: [
+                    "🥋 Tứ đẳng huyền đai",
+                    "🏆 Kiện tướng Quốc tế",
+                    "🇻🇳 Cựu VĐV Đội tuyển Taekwondo Quốc gia Việt Nam"
+                ],
+                googleForm: "https://docs.google.com/forms/d/e/1FAIpQLSfD_X-YOUR-FORM-ID-1/viewform" 
+            },
+            {
+                name: "HLV Nguyễn Ngọc Ánh",
+                image: "./image/anh.jpg",
+                quote: "Nếu bạn muốn có những thứ mình chưa có, thì bạn phải làm những việc mình chưa làm",
+                profile: [
+                    "🥋 Tứ đẳng huyền đai",
+                    "🇻🇳 Trọng tài Quốc gia cấp 3",
+                    "🇻🇳 Giám khảo Quốc gia"
+                ],
+                googleForm: "https://docs.google.com/forms/d/e/1FAIpQLSfD_X-YOUR-FORM-ID-2/viewform"
+            },
+            {
+                name: "HLV Hoàng Văn Hiếu",
+                image: "./image/hieu.jpg",
+                quote: "Hãy trao cho tôi niềm tin vững chắc, tôi sẽ huấn luyện bạn thành một nhà vô địch",
+                profile: [
+                    "🥋 Tứ đẳng huyền đai",
+                    "🏆 Kiện tướng Quốc gia",
+                    "🏆 Kiện tướng Quốc tế",
+                    "🇻🇳 Trọng tài Quốc gia cấp 3"
+                ],
+                googleForm: "https://docs.google.com/forms/d/e/1FAIpQLSfD_X-YOUR-FORM-ID-3/viewform"
+            },
+            {
+                name: "HLV Vũ Đăng Khoa",
+                image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=500&auto=format&fit=crop&q=80",
+                quote: "Kỷ luật thép tạo nên những nhà vô địch thực sự.",
+                profile: [
+                    "🥋 Tam đẳng huyền đai",
+                    "🏆 Huy chương Vàng giải trẻ Đông Nam Á"
+                ],
+                googleForm: "https://docs.google.com/forms/..."
+            },
+            {
+                name: "HLV Lê Thị Mai",
+                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&auto=format&fit=crop&q=80",
+                quote: "Chiến thắng vĩ đại nhất là chiến thắng chính bản thân mình.",
+                profile: [
+                    "🥋 Chuẩn ngũ đẳng",
+                    "🇻🇳 Trọng tài Poomsae (Quyền) Quốc tế"
+                ],
+                googleForm: "https://docs.google.com/forms/..."
+            }
+        ];
+
+        // ĐỔ DỮ LIỆU RA SLIDER
+        const sliderContainer = document.getElementById('slider-container');
+        coachesData.forEach((coach, index) => {
+            const slideHtml = `
+                <div class="swiper-slide py-6">
+                    <div onclick="openModal(${index})" class="cursor-pointer bg-white border-4 border-slate-900 rounded-3xl overflow-hidden w-[270px] mx-auto shadow-[0_8px_0_0_rgba(30,41,59,1)] hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-full aspect-[3/4] overflow-hidden bg-slate-200 border-b-4 border-slate-900">
+                            <img src="${coach.image}" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80'" alt="${coach.name}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4 text-center bg-blue-50">
+                            <h3 class="font-black text-lg text-slate-800 line-clamp-1">${coach.name}</h3>
+                            <div class="mt-2 text-xs font-bold text-red-500 uppercase tracking-widest animate-pulse">
+                                Nhấn để xem & Vote
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            sliderContainer.innerHTML += slideHtml;
+        });
+
+        // CẤU HÌNH SWIPER - TỰ ĐỘNG LƯỚT NÂNG CAO CHO CẢ MOBILE
+       // 3. CẤU HÌNH SWIPER KHẮC PHỤC TRIỆT ĐỂ LỖI AUTOPLAY
+        var swiper = new Swiper(".mySwiper", {
+            observer: true,            // SỬA LỖI: Bắt Swiper theo dõi khi HTML được tạo xong
+            observeParents: true,      // SỬA LỖI: Theo dõi cả khung cha của Slide
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
+            speed: 800,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false, // Vuốt tay xong vẫn tự chạy tiếp
+                pauseOnMouseEnter: true,     // Di chuột vào thì dừng lại
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                320: { slidesPerView: 1.4, spaceBetween: 10 },
+                640: { slidesPerView: 2.5, spaceBetween: 20 },
+                1024: { slidesPerView: 3.5, spaceBetween: 35 },
+            },
+        });
+
+        // 4. ĐIỀU KHIỂN POP-UP CHI TIẾT
+        function openModal(index) {
+            const coach = coachesData[index];
+            swiper.autoplay.stop(); // Dừng lướt khi đang xem chi tiết
+
+            document.getElementById('modal-name').innerText = coach.name;
+            
+            const imgEl = document.getElementById('modal-img');
+            imgEl.src = coach.image;
+            imgEl.onerror = () => { imgEl.src = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" };
+
+            document.getElementById('modal-quote').innerText = '"' + coach.quote + '"';
+            
+            // XỬ LÝ CHIA DÒNG HỒ SƠ: Biến mảng chữ thành các dòng có dấu chấm đầu dòng ngộ nghĩnh
+            const profileContainer = document.getElementById('modal-profile');
+            profileContainer.innerHTML = coach.profile.map(line => `<div class="mb-1.5 font-bold text-slate-700 flex items-start gap-1">✨ <span>${line}</span></div>`).join('');
+            
+            document.getElementById('modal-vote-btn').href = coach.googleForm;
+            document.getElementById('modal-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(coach.googleForm)}`;
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            swiper.autoplay.start(); // Chạy lại slide khi tắt bảng thông tin
+        }
+    </script>
