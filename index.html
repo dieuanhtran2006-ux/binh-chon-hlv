@@ -162,7 +162,8 @@
     <!-- Thư viện Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <script>
+   <script>
+        // 1. DỮ LIỆU CÁC HLV (Giữ nguyên)
         const coachesData = [
             {
                 name: "HLV Nguyễn Thành Đạt",
@@ -173,7 +174,7 @@
                     "🏆 Kiện tướng Quốc tế",
                     "🇻🇳 Cựu VĐV Đội tuyển Taekwondo Quốc gia Việt Nam"
                 ],
-                googleForm: "https://forms.gle/1XY4jq2oYjH6nhX39" 
+                googleForm: "https://docs.google.com/forms/d/e/1FAIpQLSfD_X-YOUR-FORM-ID-1/viewform" 
             },
             {
                 name: "HLV Nguyễn Ngọc Ánh",
@@ -181,10 +182,10 @@
                 quote: "Nếu bạn muốn có những thứ mình chưa có, thì bạn phải làm những việc mình chưa làm",
                 profile: [
                     "🥋 Tứ đẳng huyền đai",
-                    "🇻🇳 Trọng tài Quốc gia cấp 3",
-                    "🇻🇳 Giám khảo Quốc gia"
+                    "🏅 Trọng tài Quốc gia cấp 3",
+                    "📋 Giám khảo Quốc gia"
                 ],
-                googleForm: "https://forms.gle/1XY4jq2oYjH6nhX39"
+                googleForm: "https://docs.google.com/forms/d/e/1FAIpQLSfD_X-YOUR-FORM-ID-2/viewform"
             },
             {
                 name: "HLV Hoàng Văn Hiếu",
@@ -192,11 +193,11 @@
                 quote: "Hãy trao cho tôi niềm tin vững chắc, tôi sẽ huấn luyện bạn thành một nhà vô địch",
                 profile: [
                     "🥋 Tứ đẳng huyền đai",
-                    "🏆 Kiện tướng Quốc gia",
+                    "🥇 Kiện tướng Quốc gia",
                     "🏆 Kiện tướng Quốc tế",
-                    "🇻🇳 Trọng tài Quốc gia cấp 3"
+                    "🏅 Trọng tài Quốc gia cấp 3"
                 ],
-                googleForm: "https://forms.gle/1XY4jq2oYjH6nhX39"
+                googleForm: "https://docs.google.com/forms/d/e/1FAIpQLSfD_X-YOUR-FORM-ID-3/viewform"
             },
             {
                 name: "HLV Vũ Đăng Khoa",
@@ -204,9 +205,9 @@
                 quote: "Kỷ luật thép tạo nên những nhà vô địch thực sự.",
                 profile: [
                     "🥋 Tam đẳng huyền đai",
-                    "🏆 Huy chương Vàng giải trẻ Đông Nam Á"
+                    "🥇 Huy chương Vàng giải trẻ Đông Nam Á"
                 ],
-                googleForm: "https://forms.gle/1XY4jq2oYjH6nhX39"
+                googleForm: "https://docs.google.com/forms/..."
             },
             {
                 name: "HLV Lê Thị Mai",
@@ -214,15 +215,12 @@
                 quote: "Chiến thắng vĩ đại nhất là chiến thắng chính bản thân mình.",
                 profile: [
                     "🥋 Chuẩn ngũ đẳng",
-                    "🇻🇳 Trọng tài Poomsae (Quyền) Quốc tế"
+                    "📋 Trọng tài Poomsae (Quyền) Quốc tế"
                 ],
-                googleForm: "https://forms.gle/1XY4jq2oYjH6nhX39"
+                googleForm: "https://docs.google.com/forms/..."
             }
         ];
 
-        // BÍ KÍP CHỐNG CHOKE: Nhân đôi danh sách (từ 5 thành 10 thẻ) để vòng lặp nối đuôi tàng hình
-        const extendedData = [...coachesData, ...coachesData]; 
-        
         // 2. TỰ ĐỘNG SINH THẺ HLV RA GIAO DIỆN (Bản thiết kế Sticker Cute & Sắc nét)
         const extendedData = [...coachesData, ...coachesData]; 
         const sliderContainer = document.getElementById('slider-container');
@@ -230,37 +228,30 @@
         extendedData.forEach((coach, index) => {
             const realIndex = index % coachesData.length; 
             
-            // Thiết kế thẻ ảnh tròn, sticker ngôi sao, kẹo dẻo, dấu chân và huy chương
             const slideHtml = `
                 <div class="swiper-slide py-8 !w-[280px] md:!w-[320px]">
-                    <!-- Card HLV Chính (Có bóng đổ Neobrutalism cứng cáp) -->
                     <div onclick="openModal(${realIndex})" class="cursor-pointer bg-white border-4 border-slate-900 rounded-3xl p-5 w-full h-full shadow-[6px_6px_0px_0px_rgba(30,41,59,1)] hover:shadow-[10px_10px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-2 transition-all duration-300 relative">
                         
-                        <!-- ✨ STICKERS ĐÁNG YÊU (Tự động xoay nhẹ và có bóng đổ viền đen sắc nét) ✨ -->
+                        <!-- ✨ STICKERS ĐÁNG YÊU ✨ -->
                         <div class="absolute -top-5 -left-5 text-4xl rotate-12 drop-shadow-[2px_2px_0px_rgba(30,41,59,1)] hover:scale-110 transition-transform">⭐</div>
                         <div class="absolute -bottom-4 -right-4 text-4xl -rotate-12 drop-shadow-[2px_2px_0px_rgba(30,41,59,1)] hover:scale-110 transition-transform">🐾</div>
                         <div class="absolute top-1/4 -right-5 text-3xl rotate-45 drop-shadow-[2px_2px_0px_rgba(30,41,59,1)]">🍬</div>
                         <div class="absolute bottom-1/4 -left-4 text-3xl -rotate-12 drop-shadow-[2px_2px_0px_rgba(30,41,59,1)]">✨</div>
 
-                        <!-- TIÊU ĐỀ TRÊN THẺ -->
                         <div class="text-center mb-4">
-                            <!-- Badge màu vàng tươi tắn -->
                             <span class="inline-block bg-yellow-300 text-slate-900 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border-2 border-slate-900 mb-2 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)]">
                                 Taekwondo Kids
                             </span>
                             <h2 class="text-xl font-black text-slate-900 tracking-tight">Huấn Luyện Viên</h2>
                         </div>
 
-                        <!-- ẢNH ĐẠI DIỆN TRÒN TRUNG TÂM -->
                         <div class="relative w-28 h-28 mx-auto mb-4">
                             <div class="w-full h-full rounded-full border-4 border-slate-900 overflow-hidden bg-blue-100 shadow-[3px_3px_0px_0px_rgba(30,41,59,1)]">
                                 <img src="${coach.image}" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80'" alt="${coach.name}" class="w-full h-full object-cover">
                             </div>
-                            <!-- Huy chương đính kèm góc ảnh -->
                             <div class="absolute -bottom-1 -right-1 text-2xl drop-shadow-[2px_2px_0px_rgba(30,41,59,1)]">🏅</div>
                         </div>
 
-                        <!-- THÔNG TIN & TRÍCH DẪN (Khung màu hồng nhạt ngọt ngào) -->
                         <div class="text-center bg-pink-100 border-4 border-slate-900 rounded-2xl p-3 shadow-[3px_3px_0px_0px_rgba(30,41,59,1)]">
                             <h3 class="text-[17px] font-black text-slate-800 line-clamp-1">${coach.name}</h3>
                             <div class="w-10 h-0.5 bg-slate-900 mx-auto my-2 rounded-full"></div>
@@ -274,7 +265,8 @@
             `;
             sliderContainer.innerHTML += slideHtml;
         });
-// 3. CẤU HÌNH SWIPER KHẮC PHỤC CHUẨN XÁC
+
+        // 3. CẤU HÌNH SWIPER (Bản tối ưu mượt mà, trôi liên tục)
         var swiper = new Swiper(".mySwiper", {
             observer: true,
             observeParents: true,
@@ -283,7 +275,7 @@
             slidesPerView: "auto",
             
             loop: true,
-            loopAdditionalSlides: 5, // CHỐNG CHOKE: Ép hệ thống render dư 5 thẻ ở hai đầu để nối mượt
+            loopAdditionalSlides: 5, 
             spaceBetween: 45,        
             
             speed: 4000, 
@@ -299,10 +291,10 @@
             }
         });
 
-        // 4. ĐIỀU KHIỂN POP-UP CHI TIẾT
+        // 4. ĐIỀU KHIỂN BẢNG THÔNG TIN (POP-UP)
         function openModal(index) {
             const coach = coachesData[index];
-            swiper.autoplay.stop(); // Dừng lướt khi đang xem chi tiết
+            swiper.autoplay.stop(); 
 
             document.getElementById('modal-name').innerText = coach.name;
             
@@ -312,7 +304,6 @@
 
             document.getElementById('modal-quote').innerText = '"' + coach.quote + '"';
             
-            // XỬ LÝ CHIA DÒNG HỒ SƠ: Biến mảng chữ thành các dòng có dấu chấm đầu dòng ngộ nghĩnh
             const profileContainer = document.getElementById('modal-profile');
             profileContainer.innerHTML = coach.profile.map(line => `<div class="mb-1.5 font-bold text-slate-700 flex items-start gap-1">✨ <span>${line}</span></div>`).join('');
             
@@ -326,6 +317,6 @@
         function closeModal() {
             document.getElementById('detail-modal').classList.add('hidden');
             document.body.style.overflow = 'auto';
-            swiper.autoplay.start(); // Chạy lại slide khi tắt bảng thông tin
+            swiper.autoplay.start(); 
         }
     </script>
