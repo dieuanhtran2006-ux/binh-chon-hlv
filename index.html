@@ -292,7 +292,7 @@
 
     <script>
         // 🌟 ĐƯỜNG DẪN API GOOGLE APPS SCRIPT CỦA BẠN (Thay link /exec của bạn vào đây)
-        const API_URL = "https://script.google.com/macros/s/AKfycbwEnWIUrh23fGUj55xcB5fU7hzZPSU47t0VVwGH9Vc1-SyFZT1TG8vkDVlo6PZEW0F-/exec";
+        const API_URL = "https://script.google.com/macros/s/AKfycbwmRv7eJckXeEEYBjxYSbdOEFkjGmeo6IMQm9A9PPSKsPMQohm16OghIaKBS7nJJuWb/exec";
 
         const coachesData = [
             {
@@ -488,7 +488,10 @@
                 // 🌟 Bổ sung q1, q2, q3, q4, q5 vào đường dẫn gửi đi
                 const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&contact=${encodeURIComponent(phone)}&message=${encodeURIComponent(memories)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}`;
                 
-                const response = await fetch(fetchUrl, { redirect: "follow" });
+              const response = await fetch(fetchUrl, {
+    method: "GET",
+    redirect: "follow" // Cho phép trình duyệt đi theo chuyển hướng của Google
+});
                 const data = await response.json();
 
                 if (data.status === "success") {
