@@ -161,22 +161,75 @@
                     </div>
                 </div>
 
-                <!-- PHẦN 2: ĐÁNH GIÁ CHẤT LƯỢNG -->
+               <!-- PHẦN 2: ĐÁNH GIÁ CHẤT LƯỢNG -->
                 <div class="mb-6">
                     <h4 class="font-black text-slate-900 bg-slate-200 px-3 py-1 rounded-lg inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 2: ĐÁNH GIÁ CHẤT LƯỢNG</h4>
-                    <p class="text-[10px] font-bold text-slate-500 mb-2">(Thang điểm: 1 - Rất tệ ➡️ 5 - Rất xuất sắc)</p>
-                    <div class="flex flex-col gap-3 p-3 bg-white border-2 border-slate-900 rounded-xl" id="rating-container">
-                        <label class="block text-sm font-black text-slate-800">Mức độ hài lòng của bạn về HLV?</label>
-                        <div class="flex items-center justify-between md:justify-start md:gap-4 font-bold text-slate-700 text-sm">
-                            <label class="flex flex-col items-center gap-1 cursor-pointer hover:text-red-500"><input type="radio" name="rating" value="1">1</label>
-                            <label class="flex flex-col items-center gap-1 cursor-pointer hover:text-orange-500"><input type="radio" name="rating" value="2">2</label>
-                            <label class="flex flex-col items-center gap-1 cursor-pointer hover:text-yellow-500"><input type="radio" name="rating" value="3" checked>3</label>
-                            <label class="flex flex-col items-center gap-1 cursor-pointer hover:text-green-500"><input type="radio" name="rating" value="4">4</label>
-                            <label class="flex flex-col items-center gap-1 cursor-pointer hover:text-blue-500"><input type="radio" name="rating" value="5">5</label>
+                    <p class="text-[10px] font-bold text-slate-500 mb-2">(Thang điểm: 1 - Kém ➡️ 5 - Rất xuất sắc)</p>
+                    
+                    <div class="flex flex-col gap-0 bg-white border-2 border-slate-900 rounded-xl overflow-hidden" id="rating-container">
+                        
+                        <!-- Tiêu chí 1: Kiến thức chuyên môn -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-dashed border-slate-200 bg-slate-50/50 hover:bg-yellow-50 transition-colors">
+                            <label class="text-sm font-black text-slate-800 md:w-3/5">1. Kiến thức chuyên môn</label>
+                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
+                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q1" value="1">1</label>
+                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q1" value="2">2</label>
+                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q1" value="3" checked>3</label>
+                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q1" value="4">4</label>
+                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q1" value="5">5</label>
+                            </div>
                         </div>
+
+                        <!-- Tiêu chí 2: Kỹ năng truyền đạt -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-dashed border-slate-200 hover:bg-yellow-50 transition-colors">
+                            <label class="text-sm font-black text-slate-800 md:w-3/5">2. Kỹ năng truyền đạt</label>
+                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
+                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q2" value="1">1</label>
+                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q2" value="2">2</label>
+                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q2" value="3" checked>3</label>
+                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q2" value="4">4</label>
+                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q2" value="5">5</label>
+                            </div>
+                        </div>
+
+                        <!-- Tiêu chí 3: Sự tận tâm & nhiệt huyết -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-dashed border-slate-200 bg-slate-50/50 hover:bg-yellow-50 transition-colors">
+                            <label class="text-sm font-black text-slate-800 md:w-3/5">3. Sự tận tâm & nhiệt huyết</label>
+                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
+                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q3" value="1">1</label>
+                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q3" value="2">2</label>
+                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q3" value="3" checked>3</label>
+                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q3" value="4">4</label>
+                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q3" value="5">5</label>
+                            </div>
+                        </div>
+
+                        <!-- Tiêu chí 4: Sự quan tâm cá nhân -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-dashed border-slate-200 hover:bg-yellow-50 transition-colors">
+                            <label class="text-sm font-black text-slate-800 md:w-3/5">4. Sự quan tâm cá nhân</label>
+                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
+                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q4" value="1">1</label>
+                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q4" value="2">2</label>
+                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q4" value="3" checked>3</label>
+                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q4" value="4">4</label>
+                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q4" value="5">5</label>
+                            </div>
+                        </div>
+
+                        <!-- Tiêu chí 5: Hiệu quả huấn luyện -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 bg-slate-50/50 hover:bg-yellow-50 transition-colors">
+                            <label class="text-sm font-black text-slate-800 md:w-3/5">5. Hiệu quả huấn luyện</label>
+                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
+                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q5" value="1">1</label>
+                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q5" value="2">2</label>
+                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q5" value="3" checked>3</label>
+                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q5" value="4">4</label>
+                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q5" value="5">5</label>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
                 <!-- PHẦN 3: BÌNH CHỌN -->
                 <div class="mb-6">
                     <h4 class="font-black text-slate-900 bg-slate-200 px-3 py-1 rounded-lg inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 3: BÌNH CHỌN YÊU THÍCH</h4>
@@ -239,7 +292,7 @@
 
     <script>
         // 🌟 ĐƯỜNG DẪN API GOOGLE APPS SCRIPT CỦA BẠN (Thay link /exec của bạn vào đây)
-        const API_URL = "https://script.google.com/macros/s/AKfycbwhtdbOqxnE8MElJbynta0eOpLHo5boNEzLeCHQRlFlm5x5g7ll9qYrlIgiVS-T_t5y/exec";
+        const API_URL = "https://script.google.com/macros/s/AKfycbwEnWIUrh23fGUj55xcB5fU7hzZPSU47t0VVwGH9Vc1-SyFZT1TG8vkDVlo6PZEW0F-/exec";
 
         const coachesData = [
             {
@@ -398,7 +451,7 @@
         }
 
         // 6. GỬI PHIẾU BÌNH CHỌN (Đã đồng bộ với ID form mới)
-        async function submitSurvey() {
+    async function submitSurvey() {
             const voterName = document.getElementById('form-name').value.trim();
             const className = document.getElementById('form-class').value.trim();
             const email = document.getElementById('form-email').value.trim();
@@ -406,6 +459,13 @@
             const memories = document.getElementById('form-memories').value.trim();
             const suggestions = document.getElementById('form-suggestions').value.trim();
             const submitBtn = document.getElementById('submit-btn');
+
+            // 🌟 Lấy giá trị của 5 tiêu chí đánh giá
+            const q1 = document.querySelector('input[name="q1"]:checked').value;
+            const q2 = document.querySelector('input[name="q2"]:checked').value;
+            const q3 = document.querySelector('input[name="q3"]:checked').value;
+            const q4 = document.querySelector('input[name="q4"]:checked').value;
+            const q5 = document.querySelector('input[name="q5"]:checked').value;
 
             // Validate dữ liệu bắt buộc
             if (!className || !email || !phone) {
@@ -424,11 +484,11 @@
             submitBtn.innerText = "ĐANG GỬI PHIẾU VOTE... ⏳";
             showStatus("Đang ghi nhận đánh giá của bạn lên máy chủ...", "blue");
 
-            // Lưu ý: Các tham số dưới đây (class, email, memories...) cần được xử lý tương ứng ở phía Google Apps Script để ghi nhận dữ liệu nếu bạn cần thu thập chi tiết.
-            // Ở ví dụ dưới đây, tôi giữ nguyên structure gửi lên API như code gốc của bạn.
             try {
-                const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&contact=${encodeURIComponent(phone)}&message=${encodeURIComponent(memories)}`;
-                const response = await fetch(fetchUrl);
+                // 🌟 Bổ sung q1, q2, q3, q4, q5 vào đường dẫn gửi đi
+                const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&contact=${encodeURIComponent(phone)}&message=${encodeURIComponent(memories)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}`;
+                
+                const response = await fetch(fetchUrl, { redirect: "follow" });
                 const data = await response.json();
 
                 if (data.status === "success") {
