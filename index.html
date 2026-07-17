@@ -263,6 +263,9 @@
                 <button onclick="submitSurvey()" id="submit-btn" class="w-full py-3 bg-teal-400 hover:bg-teal-500 text-slate-900 font-black text-lg rounded-2xl border-4 border-slate-900 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(30,41,59,1)] transition-all uppercase">
                     GỬI ĐÁNH GIÁ 🚀
                 </button>
+
+<!-- DÒNG NÀY RẤT QUAN TRỌNG: Đây là nơi hiện thông báo thành công/thất bại -->
+<div id="status-msg" class="text-center font-bold text-sm mt-3 hidden px-4 py-2 rounded-xl border-2 border-slate-900"></div>
                 <div id="status-msg" class="text-center font-bold text-sm mt-3 hidden px-4 py-2 rounded-xl border-2 border-slate-900"></div>
                 
                 <!-- ẨN QR TRÊN MOBILE (Modal) -->
@@ -433,8 +436,15 @@ function openModal(index) {
 // Hàm hiển thị thông báo trạng thái dưới nút Gửi
 function showStatus(message, color) {
     const statusEl = document.getElementById('status-msg');
-    if (!statusEl) return;
     
+    // Nếu vô tình mất thẻ HTML, nó sẽ dùng cửa sổ Popup (Alert) thay vì báo lỗi sập web
+    if (!statusEl) {
+        console.warn("Không tìm thấy thẻ status-msg, chuyển sang dùng Alert.");
+        alert(message);
+        return;
+    }
+    
+    // Nếu có thẻ HTML, hiển thị thông báo bình thường
     statusEl.innerText = message;
     statusEl.className = `text-center font-bold text-sm mt-3 px-4 py-2 rounded-xl border-2 border-slate-900 block bg-${color}-100 text-${color}-700`;
 }
