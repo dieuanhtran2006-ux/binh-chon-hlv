@@ -435,16 +435,14 @@ function openModal(index) {
         }
         
 // Hàm hiển thị thông báo trạng thái dưới nút Gửi
-function showStatus(message, color) {
-    const statusEl = document.getElementById('status-msg');
-    
-    // KIỂM TRA BẢO MẬT: Nếu HTML bị thiếu id="status-msg", dùng hàm alert để báo thay vì sập web!
-    if (!statusEl) {
-        console.warn("⚠️ Không tìm thấy thẻ <div id='status-msg'>. Thông báo: " + message);
-        // Hiển thị thông báo bằng hộp thoại trình duyệt
-        alert("Thông báo: " + message);
-        return; 
-    }
+function showStatus(message) {
+  const statusEl = document.getElementById('status-message'); // Ensure ID is correct
+  if (statusEl) {
+    statusEl.innerText = message;
+  } else {
+    console.error("Status element not found in the DOM.");
+  }
+}
     
     // Nếu tìm thấy thẻ bình thường, ghi chữ vào thẻ
     statusEl.innerText = message;
