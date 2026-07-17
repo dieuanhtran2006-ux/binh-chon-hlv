@@ -433,50 +433,53 @@
             swiper.autoplay.start(); 
         }
         
-        async function submitSurvey() {
-            const voterName = document.getElementById('form-name').value.trim();
-            const className = document.getElementById('form-class').value.trim();
-            const email = document.getElementById('form-email').value.trim();
-            const phone = document.getElementById('form-phone').value.trim();
-            const memories = document.getElementById('form-memories').value.trim();
-            const suggestions = document.getElementById('form-suggestions').value.trim();
-            const submitBtn = document.getElementById('submit-btn');
-            
-            if (!className || !email || !phone) {
-                showStatus("❌ Vui lòng điền Lớp, SĐT và Email!", "rose");
-                return;
-            }
-            
-            submitBtn.disabled = true;
-            submitBtn.innerText = "ĐANG GỬI... ⏳";
-            showStatus("Đang ghi nhận...", "blue");
-            
-            const q1 = document.querySelector('input[name="q1"]:checked').value;
-            const q2 = document.querySelector('input[name="q2"]:checked').value;
-            const q3 = document.querySelector('input[name="q3"]:checked').value;
-            const q4 = document.querySelector('input[name="q4"]:checked').value;
-            const q5 = document.querySelector('input[name="q5"]:checked').value;
+      async function submitSurvey() {
+    const voterName = document.getElementById('form-name').value.trim();
+    const className = document.getElementById('form-class').value.trim();
+    const email = document.getElementById('form-email').value.trim();
+    const phone = document.getElementById('form-phone').value.trim();
+    const memories = document.getElementById('form-memories').value.trim();
+    const suggestions = document.getElementById('form-suggestions').value.trim();
+    const submitBtn = document.getElementById('submit-btn');
+    
+    // Kiểm tra các trường bắt buộc
+    if (!className || !email || !phone) {
+        showStatus("❌ Vui lòng điền Lớp, SĐT và Email!", "rose");
+        return;
+    }
+    
+    submitBtn.disabled = true;
+    submitBtn.innerText = "ĐANG GỬI... ⏳";
+    showStatus("Đang ghi nhận...", "blue");
+    
+    const q1 = document.querySelector('input[name="q1"]:checked').value;
+    const q2 = document.querySelector('input[name="q2"]:checked').value;
+    const q3 = document.querySelector('input[name="q3"]:checked').value;
+    const q4 = document.querySelector('input[name="q4"]:checked').value;
+    const q5 = document.querySelector('input[name="q5"]:checked').value;
 
-            try {
-                const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&contact=${encodeURIComponent(phone)}&message=${encodeURIComponent(memories)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}`;
-                const response = await fetch(fetchUrl);
-                const data = await response.json();
-                
-                if (data.status === "success") {
-                    currentVotes[activeCoachName] = (currentVotes[activeCoachName] || 0) + 1;
-                    updateVoteUI(currentVotes); 
-                    showStatus("🎉 Bình chọn thành công!", "green");
-                    setTimeout(() => closeModal(), 1500);
-                } else if (data.status === "duplicate") {
-                    showStatus("⚠️ Bạn đã bình chọn cho HLV này rồi!", "amber");
-                } else throw new Error();
-            } catch (error) {
-                showStatus("❌ Có lỗi kết nối. Vui lòng thử lại!", "rose");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "GỬI ĐÁNH GIÁ 🚀";
-            }
-        }
+    try {
+        // ĐÃ SỬA LẠI ĐƯỜNG DẪN: Truyền đầy đủ chính xác tất cả các biến
+        const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&voterEmail=${encodeURIComponent(email)}&voterPhone=${encodeURIComponent(phone)}&className=${encodeURIComponent(className)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}&memories=${encodeURIComponent(memories)}&suggestions=${encodeURIComponent(suggestions)}`;
+        
+        const response = await fetch(fetchUrl);
+        const data = await response.json();
+        
+        if (data.status === "success") {
+            currentVotes[activeCoachName] = (currentVotes[activeCoachName] || 0) + 1;
+            updateVoteUI(currentVotes); 
+            showStatus("🎉 Bình chọn thành công!", "green");
+            setTimeout(() => closeModal(), 1500);
+        } else if (data.status === "duplicate") {
+            showStatus("⚠️ Bạn đã bình chọn cho HLV này rồi!", "amber");
+        } else throw new Error();
+    } catch (error) {
+        showStatus("❌ Có lỗi kết nối. Vui lòng thử lại!", "rose");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "GỬI ĐÁNH GIÁ 🚀";
+    }
+}
 
         function showStatus(text, type) {
             const statusEl = document.getElementById('vote-status');
