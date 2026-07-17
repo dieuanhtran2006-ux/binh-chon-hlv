@@ -60,18 +60,22 @@
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 md:p-8">
 
-    <!-- TIÊU ĐỀ -->
-    <header class="text-center my-6 w-full max-w-5xl">
+<!-- TIÊU ĐỀ & MÃ QR CHUNG -->
+    <header class="text-center my-6 w-full max-w-5xl flex flex-col items-center">
         <h1 class="text-4xl md:text-5xl font-black text-blue-700 drop-shadow-[0_4px_0_rgba(239,68,68,1)] tracking-wide uppercase">
             🥋 Bình Chọn HLV Taekwondo 🥋
         </h1>
-        <p class="text-slate-800 font-bold mt-4 text-lg bg-white/70 inline-block px-6 py-2 rounded-full border-2 border-slate-900 shadow-sm">
-             Nhấn vào thẻ để xem chi tiết! 🔥
-        </p>
+        
+        <!-- Khung QR Code Chung -->
+        <div class="mt-6 flex flex-col items-center gap-2 bg-white p-4 rounded-2xl border-4 border-slate-900 shadow-[6px_6px_0px_0px_rgba(30,41,59,1)]">
+            <p class="text-sm font-black text-slate-800 uppercase bg-yellow-300 px-3 py-1 rounded-full border-2 border-slate-900 shadow-sm">Mã QR Bầu Chọn</p>
+            <img id="general-qr" src="" alt="QR Code Chung" class="w-32 h-32 border-2 border-slate-900 rounded-xl">
+            <p class="text-[11px] font-bold text-slate-500">Quét để truy cập nhanh trang web</p>
+        </div>
     </header>
 
     <!-- BẢNG XẾP HẠNG (LEADERBOARD) -->
-    <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-3xl p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10">
+    <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-3xl p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10 mt-6">
         <h2 class="text-2xl font-black text-red-600 mb-4 text-center flex justify-center items-center gap-2">
             🏆 Bảng Xếp Hạng Tạm Thời 🏆
         </h2>
@@ -81,21 +85,22 @@
                     <span class="bg-yellow-400 text-yellow-900 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">1</span>
                     HLV Nguyễn Thành Đạt
                 </div>
-                <span class="text-red-600 font-black">0 🗳️</span>
+                <!-- Đã thêm ID để JS cập nhật -->
+                <span id="lb-HLV-Nguyễn-Thành-Đạt" class="text-red-600 font-black">0 🗳️</span>
             </div>
             <div class="flex items-center justify-between bg-slate-100 border-2 border-slate-300 p-3 rounded-xl">
                 <div class="flex items-center gap-3 font-bold text-slate-700">
                     <span class="bg-slate-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">2</span>
                     HLV Hoàng Văn Hiếu
                 </div>
-                <span class="text-blue-600 font-black">0 🗳️</span>
+                <span id="lb-HLV-Hoàng-Văn-Hiếu" class="text-blue-600 font-black">0 🗳️</span>
             </div>
             <div class="flex items-center justify-between bg-orange-50 border-2 border-orange-300 p-3 rounded-xl">
                 <div class="flex items-center gap-3 font-bold text-slate-700">
                     <span class="bg-orange-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">3</span>
                     HLV Nguyễn Ngọc Ánh
                 </div>
-                <span class="text-green-600 font-black">0 🗳️</span>
+                <span id="lb-HLV-Nguyễn-Ngọc-Ánh" class="text-green-600 font-black">0 🗳️</span>
             </div>
         </div>
     </section>
@@ -274,12 +279,6 @@
                 <!-- Trạng thái phản hồi -->
                 <p id="vote-status" class="text-sm font-black text-center mt-4 hidden"></p>
             </div>
-
-            <!-- Mã QR Code của riêng HLV này -->
-            <div class="mt-5 flex flex-col items-center gap-1 bg-white p-3 rounded-xl border-2 border-dashed border-slate-300">
-                <p class="text-[10px] font-black text-slate-500">MÃ QR BÌNH CHỌN NHANH</p>
-                <img id="modal-qr" src="" alt="QR Code" class="w-24 h-24 border-2 border-slate-900 rounded-lg">
-            </div>
         </div>
     </div>
 
@@ -327,7 +326,8 @@
             }
         ];
 
-        let activeCoachName = ""; 
+        let activeCoachName = "";
+        let currentVotes = {}; // Lưu trữ điểm số hiện tại
 
         // 2. KHỞI TẠO THẺ RA BANNER TRƯỢT
         const extendedData = [...coachesData, ...coachesData]; 
@@ -388,26 +388,35 @@
         });
 
         // 4. LOAD VOTE (Loại bỏ block IF hardcode để URL nào cũng chạy được)
-        async function loadVotes() {
+      async function loadVotes() {
             if (!API_URL) return;
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch(API_URL, { method: "GET", redirect: "follow" });
                 const data = await response.json();
                 if (data.status === "success") {
-                    updateVoteUI(data.votes);
+                    currentVotes = data.votes; // Cập nhật biến toàn cục
+                    updateVoteUI(currentVotes);
                 }
             } catch (error) {
                 console.error("Lỗi khi tải vote:", error);
             }
         }
 
-        function updateVoteUI(votes) {
+function updateVoteUI(votes) {
             coachesData.forEach(coach => {
                 const idSafeName = coach.name.replace(/\s+/g, '-');
+                
+                // 1. Cập nhật số vote trên thẻ trượt
                 const countEls = document.querySelectorAll(`[id="vote-count-${idSafeName}"]`);
                 countEls.forEach(el => {
                     el.innerText = votes[coach.name] || 0;
                 });
+
+                // 2. Cập nhật số vote trên Bảng Xếp Hạng
+                const leaderboardEl = document.getElementById(`lb-${idSafeName}`);
+                if (leaderboardEl) {
+                    leaderboardEl.innerText = (votes[coach.name] || 0) + " 🗳️";
+                }
             });
         }
 
@@ -435,10 +444,6 @@
             document.getElementById('vote-status').classList.add('hidden');
             document.querySelectorAll('#reasons-container input[type="checkbox"]').forEach(el => el.checked = false);
 
-            const idSafeName = coach.name.replace(/\s+/g, '-');
-            const baseWebUrl = window.location.origin + window.location.pathname;
-            const qrTargetUrl = `${baseWebUrl}?vote=${idSafeName}`;
-            document.getElementById('modal-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrTargetUrl)}`;
 
             document.getElementById('detail-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -494,13 +499,17 @@
 });
                 const data = await response.json();
 
-                if (data.status === "success") {
-                    updateVoteUI(data.votes); 
+             if (data.status === "success") {
+                    // CỘNG ĐIỂM NGAY LẬP TỨC TRÊN GIAO DIỆN (Optimistic Update)
+                    currentVotes[activeCoachName] = (currentVotes[activeCoachName] || 0) + 1;
+                    updateVoteUI(currentVotes); 
+                    
                     showStatus("🎉 Bình chọn thành công! Cảm ơn đóng góp của bạn.", "green");
                     
                     setTimeout(() => {
                         closeModal();
                     }, 1500);
+                }
                 } else if (data.status === "duplicate") {
                     showStatus("⚠️ Bạn đã bình chọn cho HLV này trước đây rồi!", "amber");
                 } else {
@@ -529,9 +538,14 @@
             statusEl.classList.remove('hidden');
         }
 
-        // TỰ ĐỘNG BẬT FORM KHI QUÉT MÃ QR CODE
+// TỰ ĐỘNG BẬT FORM HOẶC TẠO QR KHI LOAD TRANG
         window.addEventListener('DOMContentLoaded', () => {
             loadVotes(); 
+            
+            // Tạo mã QR chung cho toàn bộ trang web
+            const baseWebUrl = window.location.origin + window.location.pathname;
+            document.getElementById('general-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(baseWebUrl)}`;
+
             const urlParams = new URLSearchParams(window.location.search);
             const voteTarget = urlParams.get('vote');
             if (voteTarget) {
