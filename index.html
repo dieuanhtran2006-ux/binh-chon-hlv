@@ -510,6 +510,8 @@ async function submitSurvey() {
             statusEl.innerText = text;
             statusEl.className = `text-sm font-black text-center mt-4 text-${type}-500`;
             statusEl.classList.remove('hidden');
+            <!-- Ensure this exists in your HTML -->
+<div id="status-message"></div>
         }
 
         window.addEventListener('DOMContentLoaded', () => {
