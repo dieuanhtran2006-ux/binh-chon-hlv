@@ -5,438 +5,412 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌟 Bình Chọn HLV Taekwondo 2026 🌟</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
 <style>
     body {
-        font-family: 'Quicksand', sans-serif;
-        background-color: #FEF08A;
+        font-family: 'Nunito', sans-serif;
+        /* Đổi background tổng thể sang màu vàng nhạt */
+        background-color: #fef08a; 
+        overflow-x: hidden;
     }
     
-    /* KHUNG CHỨA CHẠY TUYẾN TÍNH TRƠN TRU */
-    .swiper-wrapper {
-        transition-timing-function: linear !important;
-    }
-    
-    /* 1. TRẠNG THÁI CÁC THẺ XUNG QUANH (BỊ CHÌM XUỐNG) */
+    .swiper-wrapper { transition-timing-function: linear !important; }
     .swiper-slide {
         transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease; 
-        transform: scale(0.8) translateY(25px);
-        opacity: 0.35;
+        transform: scale(0.8) translateY(20px);
+        opacity: 0.4;
         z-index: 10;
     }
-    
-    /* 2. TRẠNG THÁI THẺ CHÍNH GIỮA (NỔI HẲN LÊN KHÔNG TRUNG) */
     .swiper-slide-active {
-        transform: scale(1.15) translateY(-20px) !important;
+        transform: scale(1.1) translateY(-10px) !important;
         opacity: 1;
         z-index: 50; 
     }
-
-    /* 3. BIẾN ĐỔI BÓNG ĐỔ (BÍ KÍP TẠO ĐỘ NỔI 3D) */
     .swiper-slide-active > div {
-        border-color: #EF4444 !important; 
-        box-shadow: 0 20px 0px 0px rgba(30, 41, 59, 1) !important; 
+        border-color: #F472B6 !important; 
+        box-shadow: 0 15px 0px 0px rgba(30, 41, 59, 1) !important; 
     }
-
     .swiper-pagination-bullet-active {
-        background: #EF4444 !important;
+        background: #F472B6 !important;
         width: 24px !important;
-        border-radius: 4px !important;
+        border-radius: 8px !important;
     }
-
-    /* Thanh cuộn mượt cho Pop-up */
     ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    ::-webkit-scrollbar-track { background: #fdf08a; border-radius: 10px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-    
-    /* TẠO KHÔNG GIAN THỞ CHO THẺ NỔI LÊN KHÔNG BỊ CẮT */
-    .swiper {
-        padding-top: 40px !important; 
-        padding-bottom: 60px !important; 
-    }
+    .swiper { padding-top: 30px !important; padding-bottom: 60px !important; }
 </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-4 md:p-8">
-</div>
-    <!-- TIÊU ĐỀ -->
-    <header class="text-center my-6 w-full max-w-5xl">
-        <h1 class="text-4xl md:text-5xl font-black text-blue-700 drop-shadow-[0_4px_0_rgba(239,68,68,1)] tracking-wide uppercase">
-            🥋 Bình Chọn HLV Taekwondo 🥋
-        </h1>
-        <p class="text-slate-800 font-bold mt-4 text-lg bg-white/70 inline-block px-6 py-2 rounded-full border-2 border-slate-900 shadow-sm">
-             Nhấn vào thẻ để xem chi tiết! 🔥
-        </p>
-        <img id="general-qr" src="" alt="QR Code Chung" class="w-32 h-32 border-2 border-slate-900 rounded-xl">
-    </header>
+<body class="min-h-screen flex flex-col items-center p-4 md:p-8 relative">
 
-    <!-- BẢNG XẾP HẠNG (LEADERBOARD) -->
-    <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-3xl p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10">
-        <h2 class="text-2xl font-black text-red-600 mb-4 text-center flex justify-center items-center gap-2">
-            🏆 Bảng Xếp Hạng Tạm Thời 🏆
-        </h2>
-        <div class="space-y-3">
-            <div class="flex items-center justify-between bg-yellow-100 border-2 border-yellow-400 p-3 rounded-xl">
-                <div class="flex items-center gap-3 font-bold text-slate-800">
-                    <span class="bg-yellow-400 text-yellow-900 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">1</span>
-                    HLV Nguyễn Thành Đạt
-                </div>
-                <span class="text-red-600 font-black">0 🗳️</span>
-            </div>
-            <div class="flex items-center justify-between bg-slate-100 border-2 border-slate-300 p-3 rounded-xl">
-                <div class="flex items-center gap-3 font-bold text-slate-700">
-                    <span class="bg-slate-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">2</span>
-                    HLV Hoàng Văn Hiếu
-                </div>
-                <span class="text-blue-600 font-black">0 🗳️</span>
-            </div>
-            <div class="flex items-center justify-between bg-orange-50 border-2 border-orange-300 p-3 rounded-xl">
-                <div class="flex items-center gap-3 font-bold text-slate-700">
-                    <span class="bg-orange-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">3</span>
-                    HLV Nguyễn Ngọc Ánh
-                </div>
-                <span class="text-green-600 font-black">0 🗳️</span>
-            </div>
-        </div>
-    </section>
+    <!-- BACKGROUND HỌA TIẾT CẮT DÁN ĐƯỢC GIỮ NGUYÊN TRÊN NỀN VÀNG -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-80">
+        <!-- Ngôi sao xanh dương -->
+        <svg class="absolute top-[10%] left-[5%] w-20 h-20 text-blue-500 rotate-12" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
+        </svg>
+        <!-- Ngôi sao hồng -->
+        <svg class="absolute top-[20%] right-[10%] w-24 h-24 text-pink-400 -rotate-12" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
+        </svg>
+        <!-- Bông hoa trắng (Đổi màu xíu cho nổi trên nền vàng) -->
+        <svg class="absolute top-[60%] left-[10%] w-28 h-28 text-white rotate-45 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50,10 C60,10 65,20 65,30 C75,25 85,30 85,40 C85,50 75,55 65,55 C70,65 65,75 55,75 C45,75 40,65 40,55 C30,55 20,50 20,40 C20,30 30,25 40,30 C40,20 45,10 50,10 Z" />
+            <circle cx="50" cy="42" r="12" fill="#f472b6" />
+        </svg>
+        <!-- Khối đa giác xanh ngọc -->
+        <svg class="absolute top-[5%] right-[30%] w-16 h-16 text-teal-400 -rotate-6" viewBox="0 0 100 100" fill="currentColor">
+            <polygon points="50,0 100,20 80,100 20,80 0,30" />
+        </svg>
+        <!-- Ngôi sao trắng nhỏ dưới đáy -->
+        <svg class="absolute bottom-[10%] right-[20%] w-16 h-16 text-white rotate-12 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
+        </svg>
+        <!-- Cụm cỏ xanh -->
+        <svg class="absolute bottom-[5%] left-[30%] w-24 h-12 text-emerald-500" viewBox="0 0 100 50" fill="currentColor">
+            <path d="M10,50 C10,20 30,10 50,50 C50,10 70,20 90,50 Z" />
+        </svg>
+    </div>
 
-    <!-- SLIDE THẺ HLV (TỰ ĐỘNG CHẠY) -->
-    <main class="w-full max-w-6xl pb-12 pt-10">
-        <div class="swiper mySwiper !overflow-visible">
-            <div class="swiper-wrapper" id="slider-container">
-                <!-- Dữ liệu HLV tự động đổ vào đây -->
-            </div>
-            <div class="swiper-pagination !-bottom-8"></div>
-        </div>
-    </main>
-
-    <!-- BẢNG POP-UP CHI TIẾT HLV & BIỂU MẪU ĐIỀN ĐƠN VOTE (ĐÃ ĐƯỢC HỢP NHẤT) -->
-    <div id="detail-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-2 sm:p-4 hidden">
-        <div class="bg-white border-4 border-slate-900 rounded-3xl p-4 md:p-6 w-full max-w-2xl max-h-[95vh] overflow-y-auto shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] relative scrollbar-style">
+    <!-- KHUNG BAO BỌC CHIA 2 CỘT -->
+    <div class="w-full max-w-[1400px] mx-auto flex flex-col xl:flex-row gap-8 items-start justify-center relative z-10">
+        
+        <!-- CỘT TRÁI -->
+        <div class="flex flex-col items-center w-full xl:w-[65%] overflow-hidden">
             
-            <!-- Nút đóng -->
-            <button onclick="closeModal()" class="absolute top-4 right-4 bg-yellow-300 hover:bg-yellow-400 text-slate-900 font-black w-10 h-10 rounded-full border-2 border-slate-900 flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(30,41,59,1)] z-10 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(30,41,59,1)] transition-all">✕</button>
+            <header class="text-center my-6 w-full max-w-5xl flex flex-col items-center">
+                <h1 class="text-4xl md:text-5xl font-black text-rose-500 drop-shadow-[0_4px_0_rgba(30,41,59,1)] tracking-wide uppercase">
+                    Bình Chọn HLV 2026
+                </h1>
+                <!-- Nền thẻ này đổi sang trắng để nổi trên nền body vàng -->
+                <p class="text-slate-800 font-bold mt-4 text-lg bg-white inline-block px-6 py-2 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)] mb-6">
+                     ✨ Nhấn vào thẻ để bình chọn nhé! ✨
+                </p>
+                
+                <div class="flex flex-col items-center justify-center mb-4">
+                    <div class="relative bg-teal-400 p-1.5 rounded-3xl shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-1 transition-transform">
+                        <div class="bg-white p-3 rounded-2xl flex flex-col items-center border-2 border-slate-900">
+                            <img id="general-qr" src="" alt="QR Code" class="w-28 h-28 object-contain rounded-lg">
+                            <div class="mt-2 flex items-center gap-2">
+                                <span class="text-xs font-black text-slate-800 uppercase tracking-wider">Quét ngay</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-            <!-- Phần đầu: Thông tin HLV -->
+            <!-- BẢNG XẾP HẠNG (Vẫn giữ nền trắng) -->
+            <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10">
+                <h2 class="text-2xl font-black text-blue-500 mb-4 text-center">🏆 Bảng Xếp Hạng 🏆</h2>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between bg-yellow-100 border-2 border-slate-900 p-3 rounded-2xl">
+                        <div class="flex items-center gap-3 font-bold text-slate-800">
+                            <span class="bg-yellow-400 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">1</span>
+                            HLV Nguyễn Thành Đạt
+                        </div>
+                        <span id="lb-HLV-Nguyễn-Thành-Đạt" class="text-rose-500 font-black">0 🗳️</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-pink-100 border-2 border-slate-900 p-3 rounded-2xl">
+                        <div class="flex items-center gap-3 font-bold text-slate-800">
+                            <span class="bg-pink-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">2</span>
+                            HLV Hoàng Văn Hiếu
+                        </div>
+                        <span id="lb-HLV-Hoàng-Văn-Hiếu" class="text-blue-600 font-black">0 🗳️</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-emerald-100 border-2 border-slate-900 p-3 rounded-2xl">
+                        <div class="flex items-center gap-3 font-bold text-slate-800">
+                            <span class="bg-emerald-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">3</span>
+                            HLV Nguyễn Ngọc Ánh
+                        </div>
+                        <span id="lb-HLV-Nguyễn-Ngọc-Ánh" class="text-emerald-700 font-black">0 🗳️</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE THẺ HLV -->
+            <main class="w-full max-w-6xl pb-12 pt-10">
+                <div class="swiper mySwiper !overflow-visible">
+                    <div class="swiper-wrapper" id="slider-container">
+                        <!-- Javascript sẽ render vào đây -->
+                    </div>
+                    <div class="swiper-pagination !-bottom-8"></div>
+                </div>
+            </main>
+
+        </div> 
+
+        <!-- CỘT PHẢI PROFILE PC (Vẫn giữ nền trắng) -->
+        <div id="desktop-profile" class="hidden xl:flex sticky top-8 bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] flex-col items-center w-full xl:w-[35%] max-w-[420px] transition-opacity duration-300">
+            <div class="absolute -top-6 -right-6 text-6xl">🌸</div>
+            
+            <h3 class="text-xl font-black text-teal-500 mb-4 uppercase border-b-2 border-dashed border-slate-300 pb-2 w-full text-center">Hồ sơ Chi tiết</h3>
+            
+            <div class="w-32 h-32 rounded-full border-4 border-slate-900 overflow-hidden bg-pink-100 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] mb-4">
+                <img id="desktop-profile-img" src="" alt="Avatar" class="w-full h-full object-cover">
+            </div>
+            
+            <h2 id="desktop-profile-name" class="text-2xl font-black text-slate-900 text-center uppercase mb-2">Đang tải...</h2>
+            <p id="desktop-profile-quote" class="text-sm font-bold text-slate-600 text-center my-2 bg-yellow-50 border-2 border-dashed border-slate-300 px-3 py-2 rounded-2xl w-full"></p>
+            
+            <div class="w-full bg-slate-50 border-2 border-slate-900 rounded-2xl p-4 my-3 text-left" id="desktop-profile-details">
+                <!-- Data -->
+            </div>
+            
+            <!-- Sự kiện bình chọn dùng biến toàn cục đồng bộ -->
+            <button onclick="openModal(currentActiveRealIndex)" class="mt-2 w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-black text-lg rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(30,41,59,1)] transition-all uppercase tracking-wide">
+                Bình chọn ngay! 🚀
+            </button>
+        </div>
+
+    </div>
+
+    <!-- POP-UP BÌNH CHỌN (Giữ nguyên cấu trúc) -->
+    <div id="detail-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-2 sm:p-4 hidden">
+        <div class="bg-white border-4 border-slate-900 rounded-[2rem] p-4 md:p-6 w-full max-w-2xl max-h-[95vh] overflow-y-auto shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] relative scrollbar-style">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-rose-400 hover:bg-rose-500 text-white font-black w-10 h-10 rounded-full border-2 border-slate-900 flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(30,41,59,1)] z-10 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(30,41,59,1)] transition-all">✕</button>
+            
             <div class="flex flex-col items-center mb-6">
                 <div class="w-24 h-24 rounded-full border-4 border-slate-900 overflow-hidden bg-blue-100 shadow-[3px_3px_0px_0px_rgba(30,41,59,1)] mb-3">
                     <img id="modal-img" src="" class="w-full h-full object-cover" alt="HLV">
                 </div>
                 <h3 id="modal-name" class="text-2xl font-black text-slate-900 text-center uppercase"></h3>
-                <p id="modal-quote" class="text-xs font-bold italic text-slate-600 text-center my-2 bg-pink-50 border-2 border-dashed border-slate-300 px-3 py-1.5 rounded-xl w-full"></p>
-                
-                <!-- Profile học vấn/kinh nghiệm -->
-                <div class="w-full bg-slate-50 border-2 border-slate-900 rounded-xl p-3 my-3" id="modal-profile">
-                    <!-- Javascript tự động điền thông tin vào đây -->
-                </div>
+                <p id="modal-quote" class="text-sm font-bold text-slate-600 text-center my-2 bg-yellow-50 border-2 border-dashed border-slate-300 px-3 py-1.5 rounded-xl w-full"></p>
+                <div class="w-full bg-slate-50 border-2 border-slate-900 rounded-2xl p-3 my-3" id="modal-profile"></div>
             </div>
-
-            <!-- PHẦN FORM ĐÁNH GIÁ -->
-            <div class="w-full bg-slate-50 border-4 border-slate-900 rounded-2xl p-4 md:p-5 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)]">
+            
+            <!-- FORM NHẬP -->
+            <div class="w-full bg-white border-4 border-slate-900 rounded-3xl p-4 md:p-5 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)]">
                 
-                <p class="text-xs text-slate-600 font-bold mb-4 bg-yellow-100 p-2 rounded-lg border-2 border-slate-900">
-                    💡 Ý kiến của bạn là cơ sở quan trọng để chúng tôi phát triển tốt hơn mỗi ngày. Cảm ơn bạn!
+                <p class="text-xs text-slate-700 font-bold mb-4 bg-emerald-100 p-3 rounded-2xl border-2 border-slate-900">
+                    💡 Hãy chia sẻ cảm nghĩ của bạn để giúp các HLV tốt hơn mỗi ngày nhé!
                 </p>
-
-                <!-- PHẦN 1: THÔNG TIN CHUNG -->
+                
                 <div class="mb-6">
-                    <h4 class="font-black text-slate-900 bg-slate-200 px-3 py-1 rounded-lg inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 1: THÔNG TIN CHUNG</h4>
+                    <h4 class="font-black text-slate-900 bg-pink-200 px-3 py-1 rounded-xl inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 1: THÔNG TIN</h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[11px] font-black text-slate-700 uppercase mb-1">Họ và tên của bạn</label>
-                            <input type="text" id="form-name" placeholder="Ví dụ: Nguyễn Văn A" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm">
+                            <label class="block text-xs font-black text-slate-700 uppercase mb-1">Tên của bạn</label>
+                            <input type="text" id="form-name" placeholder="Bé..." class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-black text-slate-700 uppercase mb-1">Lớp / Khóa học *</label>
-                            <input type="text" id="form-class" placeholder="Ví dụ: Lớp Taekwondo Kids" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm">
+                            <label class="block text-xs font-black text-slate-700 uppercase mb-1">Lớp *</label>
+                            <input type="text" id="form-class" placeholder="Lớp Taekwondo..." class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-black text-slate-700 uppercase mb-1">Địa chỉ Email *</label>
+                            <label class="block text-xs font-black text-slate-700 uppercase mb-1">Email *</label>
                             <input type="email" id="form-email" placeholder="example@gmail.com" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-black text-slate-700 uppercase mb-1">Số điện thoại *</label>
-                            <input type="tel" id="form-phone" placeholder="Ví dụ: 0912345678" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm">
+                            <label class="block text-xs font-black text-slate-700 uppercase mb-1">SĐT *</label>
+                            <input type="tel" id="form-phone" placeholder="0912..." class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm">
                         </div>
                     </div>
                 </div>
 
-               <!-- PHẦN 2: ĐÁNH GIÁ CHẤT LƯỢNG -->
                 <div class="mb-6">
-                    <h4 class="font-black text-slate-900 bg-slate-200 px-3 py-1 rounded-lg inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 2: ĐÁNH GIÁ CHẤT LƯỢNG</h4>
-                    <p class="text-[10px] font-bold text-slate-500 mb-2">(Thang điểm: 1 - Kém ➡️ 5 - Rất xuất sắc)</p>
-                    
-                    <div class="flex flex-col gap-0 bg-white border-2 border-slate-900 rounded-xl overflow-hidden" id="rating-container">
-                        
-                        <!-- Tiêu chí 1: Kiến thức chuyên môn -->
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-dashed border-slate-200 bg-slate-50/50 hover:bg-yellow-50 transition-colors">
+                    <h4 class="font-black text-slate-900 bg-blue-200 px-3 py-1 rounded-xl inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 2: CHẤM ĐIỂM</h4>
+                    <div class="flex flex-col gap-0 bg-slate-50 border-2 border-slate-900 rounded-2xl overflow-hidden" id="rating-container">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-slate-200">
                             <label class="text-sm font-black text-slate-800 md:w-3/5">1. Kiến thức chuyên môn</label>
-                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
-                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q1" value="1">1</label>
-                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q1" value="2">2</label>
-                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q1" value="3" checked>3</label>
-                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q1" value="4">4</label>
-                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q1" value="5">5</label>
+                            <div class="flex justify-between md:justify-end gap-4 font-bold text-sm w-full md:w-2/5">
+                                <label><input type="radio" name="q1" value="1">1</label>
+                                <label><input type="radio" name="q1" value="2">2</label>
+                                <label><input type="radio" name="q1" value="3" checked>3</label>
+                                <label><input type="radio" name="q1" value="4">4</label>
+                                <label><input type="radio" name="q1" value="5">5</label>
                             </div>
                         </div>
-
-                        <!-- Tiêu chí 2: Kỹ năng truyền đạt -->
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-dashed border-slate-200 hover:bg-yellow-50 transition-colors">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-slate-200">
                             <label class="text-sm font-black text-slate-800 md:w-3/5">2. Kỹ năng truyền đạt</label>
-                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
-                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q2" value="1">1</label>
-                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q2" value="2">2</label>
-                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q2" value="3" checked>3</label>
-                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q2" value="4">4</label>
-                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q2" value="5">5</label>
+                            <div class="flex justify-between md:justify-end gap-4 font-bold text-sm w-full md:w-2/5">
+                                <label><input type="radio" name="q2" value="1">1</label>
+                                <label><input type="radio" name="q2" value="2">2</label>
+                                <label><input type="radio" name="q2" value="3" checked>3</label>
+                                <label><input type="radio" name="q2" value="4">4</label>
+                                <label><input type="radio" name="q2" value="5">5</label>
                             </div>
                         </div>
-
-                        <!-- Tiêu chí 3: Sự tận tâm & nhiệt huyết -->
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-dashed border-slate-200 bg-slate-50/50 hover:bg-yellow-50 transition-colors">
-                            <label class="text-sm font-black text-slate-800 md:w-3/5">3. Sự tận tâm & nhiệt huyết</label>
-                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
-                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q3" value="1">1</label>
-                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q3" value="2">2</label>
-                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q3" value="3" checked>3</label>
-                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q3" value="4">4</label>
-                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q3" value="5">5</label>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-slate-200">
+                            <label class="text-sm font-black text-slate-800 md:w-3/5">3. Sự nhiệt huyết</label>
+                            <div class="flex justify-between md:justify-end gap-4 font-bold text-sm w-full md:w-2/5">
+                                <label><input type="radio" name="q3" value="1">1</label>
+                                <label><input type="radio" name="q3" value="2">2</label>
+                                <label><input type="radio" name="q3" value="3" checked>3</label>
+                                <label><input type="radio" name="q3" value="4">4</label>
+                                <label><input type="radio" name="q3" value="5">5</label>
                             </div>
                         </div>
-
-                        <!-- Tiêu chí 4: Sự quan tâm cá nhân -->
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-dashed border-slate-200 hover:bg-yellow-50 transition-colors">
-                            <label class="text-sm font-black text-slate-800 md:w-3/5">4. Sự quan tâm cá nhân</label>
-                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
-                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q4" value="1">1</label>
-                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q4" value="2">2</label>
-                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q4" value="3" checked>3</label>
-                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q4" value="4">4</label>
-                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q4" value="5">5</label>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 border-b-2 border-slate-200">
+                            <label class="text-sm font-black text-slate-800 md:w-3/5">4. Sự quan tâm</label>
+                            <div class="flex justify-between md:justify-end gap-4 font-bold text-sm w-full md:w-2/5">
+                                <label><input type="radio" name="q4" value="1">1</label>
+                                <label><input type="radio" name="q4" value="2">2</label>
+                                <label><input type="radio" name="q4" value="3" checked>3</label>
+                                <label><input type="radio" name="q4" value="4">4</label>
+                                <label><input type="radio" name="q4" value="5">5</label>
                             </div>
                         </div>
-
-                        <!-- Tiêu chí 5: Hiệu quả huấn luyện -->
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 bg-slate-50/50 hover:bg-yellow-50 transition-colors">
-                            <label class="text-sm font-black text-slate-800 md:w-3/5">5. Hiệu quả huấn luyện</label>
-                            <div class="flex items-center justify-between md:justify-end gap-4 font-bold text-slate-700 text-sm w-full md:w-2/5">
-                                <label class="cursor-pointer hover:text-red-500 flex flex-col items-center"><input type="radio" name="q5" value="1">1</label>
-                                <label class="cursor-pointer hover:text-orange-500 flex flex-col items-center"><input type="radio" name="q5" value="2">2</label>
-                                <label class="cursor-pointer hover:text-yellow-600 flex flex-col items-center"><input type="radio" name="q5" value="3" checked>3</label>
-                                <label class="cursor-pointer hover:text-green-500 flex flex-col items-center"><input type="radio" name="q5" value="4">4</label>
-                                <label class="cursor-pointer hover:text-blue-500 flex flex-col items-center"><input type="radio" name="q5" value="5">5</label>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3">
+                            <label class="text-sm font-black text-slate-800 md:w-3/5">5. Hiệu quả</label>
+                            <div class="flex justify-between md:justify-end gap-4 font-bold text-sm w-full md:w-2/5">
+                                <label><input type="radio" name="q5" value="1">1</label>
+                                <label><input type="radio" name="q5" value="2">2</label>
+                                <label><input type="radio" name="q5" value="3" checked>3</label>
+                                <label><input type="radio" name="q5" value="4">4</label>
+                                <label><input type="radio" name="q5" value="5">5</label>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <!-- PHẦN 3: BÌNH CHỌN -->
+
                 <div class="mb-6">
-                    <h4 class="font-black text-slate-900 bg-slate-200 px-3 py-1 rounded-lg inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 3: BÌNH CHỌN YÊU THÍCH</h4>
-                    
-                    <label class="block text-xs font-black text-slate-700 mb-2">Bạn có bình chọn đây là HLV yêu thích nhất của mình không?</label>
-                    <div class="flex gap-4 mb-4">
-                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 border-2 border-slate-900 rounded-xl hover:bg-rose-50 transition-colors">
-                            <input type="radio" name="isFavorite" value="yes" checked>
-                            <span class="font-bold text-sm text-slate-800">Có, chắc chắn rồi! ❤️</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 border-2 border-slate-900 rounded-xl hover:bg-slate-100 transition-colors" onclick="closeModal()">
-                            <input type="radio" name="isFavorite" value="no">
-                            <span class="font-bold text-sm text-slate-800">Đóng để chọn người khác</span>
-                        </label>
-                    </div>
-
-                    <label class="block text-xs font-black text-slate-700 mb-2">Lý do lớn nhất khiến bạn yêu thích HLV này? (Chọn nhiều)</label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm font-bold text-slate-700" id="reasons-container">
-                        <label class="flex items-center gap-2"><input type="checkbox" value="Chuyên môn cực kỳ giỏi"> Chuyên môn cực kỳ giỏi</label>
-                        <label class="flex items-center gap-2"><input type="checkbox" value="Truyền cảm hứng tuyệt vời"> Truyền cảm hứng tuyệt vời</label>
-                        <label class="flex items-center gap-2"><input type="checkbox" value="Rất thân thiện, vui tính"> Rất thân thiện, tâm lý</label>
-                        <label class="flex items-center gap-2"><input type="checkbox" value="Quan tâm học viên như người nhà"> Quan tâm học viên như người nhà</label>
-                    </div>
+                    <h4 class="font-black text-slate-900 bg-yellow-300 px-3 py-1 rounded-xl inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 3: LỜI NHẮN</h4>
+                    <textarea id="form-memories" rows="2" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-sm mb-3" placeholder="Kỷ niệm vui nhất của bé..."></textarea>
+                    <textarea id="form-suggestions" rows="2" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-sm" placeholder="Góp ý thêm..."></textarea>
                 </div>
-
-                <!-- PHẦN 4: GÓP Ý THÊM -->
-                <div class="mb-6">
-                    <h4 class="font-black text-slate-900 bg-slate-200 px-3 py-1 rounded-lg inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 4: GÓP Ý (Tùy chọn)</h4>
-                    
-                    <label class="block text-[11px] font-black text-slate-700 uppercase mb-1">Kỷ niệm đáng nhớ nhất với HLV?</label>
-                    <textarea id="form-memories" rows="2" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm mb-3 resize-none" placeholder="Chia sẻ kỷ niệm của bạn..."></textarea>
-
-                    <label class="block text-[11px] font-black text-slate-700 uppercase mb-1">Đóng góp để chương trình tốt hơn?</label>
-                    <textarea id="form-suggestions" rows="2" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm resize-none" placeholder="Ý kiến của bạn..."></textarea>
-                </div>
-
-                <!-- SUBMIT BUTTON -->
-                <button onclick="submitSurvey()" id="submit-btn" class="w-full py-3 bg-rose-500 hover:bg-rose-600 text-white font-black text-lg rounded-xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(30,41,59,1)] transition-all">
-                    GỬI ĐÁNH GIÁ & BÌNH CHỌN 🚀
-                </button>
                 
-                <!-- Trạng thái phản hồi -->
+                <button onclick="submitSurvey()" id="submit-btn" class="w-full py-3 bg-teal-400 hover:bg-teal-500 text-slate-900 font-black text-lg rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(30,41,59,1)] transition-all">
+                    GỬI ĐÁNH GIÁ 🚀
+                </button>
                 <p id="vote-status" class="text-sm font-black text-center mt-4 hidden"></p>
             </div>
-
-            <!-- Mã QR Code của riêng HLV này -->
-            <div class="mt-5 flex flex-col items-center gap-1 bg-white p-3 rounded-xl border-2 border-dashed border-slate-300">
-                <p class="text-[10px] font-black text-slate-500">MÃ QR BÌNH CHỌN NHANH</p>
-                <img id="modal-qr" src="" alt="QR Code" class="w-24 h-24 border-2 border-slate-900 rounded-lg">
+            
+            <div class="mt-5 flex flex-col items-center gap-1 bg-white p-3 rounded-2xl border-2 border-dashed border-slate-300">
+                <p class="text-[10px] font-black text-slate-500">MÃ QR BÌNH CHỌN HLV NÀY</p>
+                <img id="modal-qr" src="" alt="QR" class="w-24 h-24 border-2 border-slate-900 rounded-lg">
             </div>
         </div>
     </div>
 
-    <footer class="text-center text-sm font-bold text-slate-600 my-4">
-        © 2026 Trang web bình chọn siêu cấp dành cho các bạn nhỏ.
-    </footer>
-
-    <!-- Thư viện Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script>
-        // 🌟 ĐƯỜNG DẪN API GOOGLE APPS SCRIPT CỦA BẠN (Thay link /exec của bạn vào đây)
         const API_URL = "https://script.google.com/macros/s/AKfycbyCKQdWonDVdnFfT9kGUs22tmOJVNzEo2omztBlXxZ8szBVWV9LmNM0OGftCIKNuWZW/exec";
-
         const coachesData = [
-            {
-                name: "HLV Nguyễn Thành Đạt",
-                image: "./image/dat.jpg", 
-                quote: "Hãy trao cho tôi niềm tin vững chắc, tôi sẽ huấn luyện bạn thành một nhà vô địch",
-                profile: ["🥋 Tứ đẳng huyền đai", "🏆 Kiện tướng Quốc tế", "🇻🇳 Cựu VĐV Đội tuyển Taekwondo Quốc gia Việt Nam"]
-            },
-            {
-                name: "HLV Nguyễn Ngọc Ánh",
-                image: "./image/anh.jpg",
-                quote: "Nếu bạn muốn có những thứ mình chưa có, thì bạn phải làm những việc mình chưa làm",
-                profile: ["🥋 Tứ đẳng huyền đai", "🏅 Trọng tài Quốc gia cấp 3", "📋 Giám khảo Quốc gia"]
-            },
-            {
-                name: "HLV Hoàng Văn Hiếu",
-                image: "./image/hieu.jpg",
-                quote: "Hãy trao cho tôi niềm tin vững chắc, tôi sẽ huấn luyện bạn thành một nhà vô địch",
-                profile: ["🥋 Tứ đẳng huyền đai", "🥇 Kiện tướng Quốc gia", "🏆 Kiện tướng Quốc tế", "🏅 Trọng tài Quốc gia cấp 3"]
-            },
-            {
-                name: "HLV Vũ Đăng Khoa",
-                image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=500&auto=format&fit=crop&q=80",
-                quote: "Kỷ luật thép tạo nên những nhà vô địch thực sự.",
-                profile: ["🥋 Tam đẳng huyền đai", "🥇 Huy chương Vàng giải trẻ Đông Nam Á"]
-            },
-            {
-                name: "HLV Lê Thị Mai",
-                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&auto=format&fit=crop&q=80",
-                quote: "Chiến thắng vĩ đại nhất là chiến thắng chính bản thân mình.",
-                profile: ["🥋 Chuẩn ngũ đẳng", "📋 Trọng tài Poomsae (Quyền) Quốc tế"]
-            }
+            { name: "HLV Nguyễn Thành Đạt", image: "./image/dat.jpg", quote: "Huấn luyện bạn thành nhà vô địch!", profile: ["🥋 Tứ đẳng huyền đai", "🏆 Kiện tướng Quốc tế", "🇻🇳 Cựu VĐV Đội tuyển"] },
+            { name: "HLV Nguyễn Ngọc Ánh", image: "./image/anh.jpg", quote: "Luôn nỗ lực làm những điều chưa làm", profile: ["🥋 Tứ đẳng huyền đai", "🏅 Trọng tài Quốc gia", "📋 Giám khảo"] },
+            { name: "HLV Hoàng Văn Hiếu", image: "./image/hieu.jpg", quote: "Niềm tin vững chắc, chiến thắng vinh quang", profile: ["🥋 Tứ đẳng huyền đai", "🥇 Kiện tướng Quốc gia", "🏆 Kiện tướng Quốc tế"] },
+            { name: "HLV Vũ Đăng Khoa", image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=500&auto=format&fit=crop&q=80", quote: "Kỷ luật thép tạo nên vô địch.", profile: ["🥋 Tam đẳng huyền đai", "🥇 HCV giải trẻ ĐNÁ"] },
+            { name: "HLV Lê Thị Mai", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&auto=format&fit=crop&q=80", quote: "Chiến thắng bản thân là chiến thắng vĩ đại.", profile: ["🥋 Chuẩn ngũ đẳng", "📋 Trọng tài Quốc tế"] }
         ];
-
+        
         let activeCoachName = ""; 
-        let currentVotes = {}; // Lưu trữ điểm số hiện tại
+        let currentVotes = {}; 
+        let currentActiveRealIndex = 0; // Biến đồng bộ Slide và Profile
 
-        // 2. KHỞI TẠO THẺ RA BANNER TRƯỢT
-        const extendedData = [...coachesData, ...coachesData]; 
+        function updateDesktopProfile(realIndex) {
+            const coach = coachesData[realIndex];
+            if (!coach) return;
+            currentActiveRealIndex = realIndex; 
+            
+            const profileBox = document.getElementById('desktop-profile');
+            if(!profileBox) return;
+
+            profileBox.style.opacity = "0.3";
+            setTimeout(() => {
+                const imgEl = document.getElementById('desktop-profile-img');
+                if(imgEl) {
+                    imgEl.src = coach.image;
+                    imgEl.onerror = () => { imgEl.src = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" };
+                }
+                document.getElementById('desktop-profile-name').innerText = coach.name;
+                document.getElementById('desktop-profile-quote').innerText = '"' + coach.quote + '"';
+                
+                const profileContainer = document.getElementById('desktop-profile-details');
+                profileContainer.innerHTML = coach.profile.map(line => `<div class="mb-2 font-bold text-slate-700 flex items-start gap-2">⭐ <span class="text-sm">${line}</span></div>`).join('');
+                
+                profileBox.style.opacity = "1";
+            }, 150);
+        }
+
         const sliderContainer = document.getElementById('slider-container');
         
-        extendedData.forEach((coach, index) => {
-            const realIndex = index % coachesData.length; 
+        coachesData.forEach((coach, index) => {
             const idSafeName = coach.name.replace(/\s+/g, '-');
-            
             const slideHtml = `
                 <div class="swiper-slide py-8 !w-[280px] md:!w-[320px]">
-                    <div onclick="openModal(${realIndex})" class="cursor-pointer bg-white border-4 border-slate-900 rounded-3xl p-5 w-full h-full shadow-[6px_6px_0px_0px_rgba(30,41,59,1)] hover:shadow-[10px_10px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-2 transition-all duration-300 relative">
-                        <span class="absolute top-3 right-3 bg-rose-500 text-white text-[10px] font-black px-2.5 py-1 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)]">
+                    <!-- Nền thẻ HLV chuyển sang trắng để nổi trên body vàng -->
+                    <div onclick="openModal(${index})" class="cursor-pointer bg-white border-4 border-slate-900 rounded-[2rem] p-5 w-full h-full shadow-[6px_6px_0px_0px_rgba(30,41,59,1)] hover:shadow-[10px_10px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-2 transition-all duration-300 relative">
+                        <span class="absolute top-3 right-3 bg-teal-400 text-slate-900 text-[10px] font-black px-2.5 py-1 rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)]">
                             🔥 <span id="vote-count-${idSafeName}">0</span> Votes
                         </span>
-                        <div class="absolute -top-5 -left-5 text-4xl rotate-12 drop-shadow-[2px_2px_0px_rgba(30,41,59,1)] hover:scale-110 transition-transform">⭐</div>
-                        <div class="absolute -bottom-4 -right-4 text-4xl -rotate-12 drop-shadow-[2px_2px_0px_rgba(30,41,59,1)] hover:scale-110 transition-transform">🐾</div>
-                        <div class="absolute top-1/4 -right-5 text-3xl rotate-45 drop-shadow-[2px_2px_0px_rgba(30,41,59,1)]">🍬</div>
-                        <div class="absolute bottom-1/4 -left-4 text-3xl -rotate-12 drop-shadow-[2px_2px_0px_rgba(30,41,59,1)]">✨</div>
-
+                        
                         <div class="text-center mb-4 mt-4">
-                            <span class="inline-block bg-yellow-300 text-slate-900 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border-2 border-slate-900 mb-2 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)]">
-                                Taekwondo Kids
+                            <span class="inline-block bg-yellow-300 text-slate-900 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-xl border-2 border-slate-900 mb-2">
+                                HLV Yêu thích
                             </span>
-                            <h2 class="text-xl font-black text-slate-900 tracking-tight">Huấn Luyện Viên</h2>
                         </div>
-
-                        <div class="relative w-28 h-28 mx-auto mb-4">
+                        <div class="relative w-32 h-32 mx-auto mb-4">
                             <div class="w-full h-full rounded-full border-4 border-slate-900 overflow-hidden bg-blue-100 shadow-[3px_3px_0px_0px_rgba(30,41,59,1)]">
                                 <img src="${coach.image}" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80'" alt="${coach.name}" class="w-full h-full object-cover">
                             </div>
-                            <div class="absolute -bottom-1 -right-1 text-2xl drop-shadow-[2px_2px_0px_rgba(30,41,59,1)]">🏅</div>
                         </div>
-
-                        <div class="text-center bg-pink-100 border-4 border-slate-900 rounded-2xl p-3 shadow-[3px_3px_0px_0px_rgba(30,41,59,1)]">
-                            <h3 class="text-[17px] font-black text-slate-800 line-clamp-1">${coach.name}</h3>
-                            <div class="w-10 h-0.5 bg-slate-900 mx-auto my-2 rounded-full"></div>
-                            <p class="font-bold text-slate-700 text-xs italic line-clamp-2">"${coach.quote}"</p>
+                        <div class="text-center bg-pink-50 border-4 border-slate-900 rounded-2xl p-3 shadow-[3px_3px_0px_0px_rgba(30,41,59,1)]">
+                            <h3 class="text-lg font-black text-slate-800 line-clamp-1">${coach.name}</h3>
                         </div>
                     </div>
                 </div>
             `;
             sliderContainer.innerHTML += slideHtml;
         });
-
+        
         var swiper = new Swiper(".mySwiper", {
             observer: true,
             observeParents: true,
             centeredSlides: true,
-            initialSlide: 2,
             slidesPerView: "auto",
-            loop: true,
-            loopAdditionalSlides: 5, 
-            spaceBetween: 45,        
-            speed: 4000, 
-            autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true },
-            pagination: { el: ".swiper-pagination", clickable: true }
+            loop: true, 
+            spaceBetween: 40,        
+            speed: 1000, 
+            autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            on: {
+                init: function () {
+                    updateDesktopProfile(this.realIndex);
+                },
+                slideChange: function () {
+                    updateDesktopProfile(this.realIndex);
+                }
+            }
         });
-
-        // 4. LOAD VOTE (Loại bỏ block IF hardcode để URL nào cũng chạy được)
+        
         async function loadVotes() {
             if (!API_URL) return;
             try {
                 const response = await fetch(API_URL, { method: "GET", redirect: "follow" });
                 const data = await response.json();
                 if (data.status === "success") {
-                    currentVotes = data.votes; // Cập nhật biến toàn cục
+                    currentVotes = data.votes; 
                     updateVoteUI(currentVotes);
                 }
-            } catch (error) {
-                console.error("Lỗi khi tải vote:", error);
-            }
+            } catch (error) {}
         }
 
         function updateVoteUI(votes) {
             coachesData.forEach(coach => {
                 const idSafeName = coach.name.replace(/\s+/g, '-');
-                
-                // 1. Cập nhật số vote trên thẻ trượt
                 const countEls = document.querySelectorAll(`[id="vote-count-${idSafeName}"]`);
-                countEls.forEach(el => {
-                    el.innerText = votes[coach.name] || 0;
-                });
-
-                // 2. Cập nhật số vote trên Bảng Xếp Hạng
+                countEls.forEach(el => el.innerText = votes[coach.name] || 0);
                 const leaderboardEl = document.getElementById(`lb-${idSafeName}`);
-                if (leaderboardEl) {
-                    leaderboardEl.innerText = (votes[coach.name] || 0) + " 🗳️";
-                }
+                if (leaderboardEl) leaderboardEl.innerText = (votes[coach.name] || 0) + " 🗳️";
             });
         }
 
         function openModal(index) {
             const coach = coachesData[index];
+            if(!coach) return;
             activeCoachName = coach.name;
             swiper.autoplay.stop(); 
-
+            
             document.getElementById('modal-name').innerText = coach.name;
             const imgEl = document.getElementById('modal-img');
             imgEl.src = coach.image;
             imgEl.onerror = () => { imgEl.src = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" };
-
             document.getElementById('modal-quote').innerText = '"' + coach.quote + '"';
-            const profileContainer = document.getElementById('modal-profile');
-            profileContainer.innerHTML = coach.profile.map(line => `<div class="mb-1.5 font-bold text-slate-700 flex items-start gap-1">✨ <span>${line}</span></div>`).join('');
+            document.getElementById('modal-profile').innerHTML = coach.profile.map(line => `<div class="mb-1.5 font-bold text-slate-700 flex items-start gap-1">⭐ <span>${line}</span></div>`).join('');
             
-            // Reset các trường nhập liệu
             document.getElementById('form-name').value = "";
             document.getElementById('form-class').value = "";
             document.getElementById('form-email').value = "";
@@ -444,13 +418,11 @@
             document.getElementById('form-memories').value = "";
             document.getElementById('form-suggestions').value = "";
             document.getElementById('vote-status').classList.add('hidden');
-            document.querySelectorAll('#reasons-container input[type="checkbox"]').forEach(el => el.checked = false);
-
+            
             const idSafeName = coach.name.replace(/\s+/g, '-');
             const baseWebUrl = window.location.origin + window.location.pathname;
-            const qrTargetUrl = `${baseWebUrl}?vote=${idSafeName}`;
-            document.getElementById('modal-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrTargetUrl)}`;
-
+            document.getElementById('modal-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(baseWebUrl + "?vote=" + idSafeName)}`;
+            
             document.getElementById('detail-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -460,9 +432,8 @@
             document.body.style.overflow = 'auto';
             swiper.autoplay.start(); 
         }
-
-        // 6. GỬI PHIẾU BÌNH CHỌN (Đã đồng bộ với ID form mới)
-    async function submitSurvey() {
+        
+        async function submitSurvey() {
             const voterName = document.getElementById('form-name').value.trim();
             const className = document.getElementById('form-class').value.trim();
             const email = document.getElementById('form-email').value.trim();
@@ -470,106 +441,54 @@
             const memories = document.getElementById('form-memories').value.trim();
             const suggestions = document.getElementById('form-suggestions').value.trim();
             const submitBtn = document.getElementById('submit-btn');
-
-            // 🌟 Lấy giá trị của 5 tiêu chí đánh giá
+            
+            if (!className || !email || !phone) {
+                showStatus("❌ Vui lòng điền Lớp, SĐT và Email!", "rose");
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.innerText = "ĐANG GỬI... ⏳";
+            showStatus("Đang ghi nhận...", "blue");
+            
             const q1 = document.querySelector('input[name="q1"]:checked').value;
             const q2 = document.querySelector('input[name="q2"]:checked').value;
             const q3 = document.querySelector('input[name="q3"]:checked').value;
             const q4 = document.querySelector('input[name="q4"]:checked').value;
             const q5 = document.querySelector('input[name="q5"]:checked').value;
 
-            // Validate dữ liệu bắt buộc
-            if (!className || !email || !phone) {
-                showStatus("❌ Vui lòng điền đầy đủ Lớp, SĐT và Email!", "rose");
-                return;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const phoneRegex = /^[0-9]{10,11}$/;
-            if (!emailRegex.test(email) || !phoneRegex.test(phone)) {
-                showStatus("❌ SĐT hoặc Email không hợp lệ! Vui lòng kiểm tra lại.", "rose");
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.innerText = "ĐANG GỬI PHIẾU VOTE... ⏳";
-            showStatus("Đang ghi nhận đánh giá của bạn lên máy chủ...", "blue");
-
             try {
-                // 🌟 Bổ sung q1, q2, q3, q4, q5 vào đường dẫn gửi đi
                 const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&contact=${encodeURIComponent(phone)}&message=${encodeURIComponent(memories)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}`;
-                
                 const response = await fetch(fetchUrl);
                 const data = await response.json();
-
+                
                 if (data.status === "success") {
-                    // CỘNG ĐIỂM NGAY LẬP TỨC TRÊN GIAO DIỆN (Optimistic Update)
                     currentVotes[activeCoachName] = (currentVotes[activeCoachName] || 0) + 1;
                     updateVoteUI(currentVotes); 
-                    
-                    showStatus("🎉 Bình chọn thành công! Cảm ơn đóng góp của bạn.", "green");
-                    
-                    setTimeout(() => {
-                        closeModal();
-                    }, 1500);
+                    showStatus("🎉 Bình chọn thành công!", "green");
+                    setTimeout(() => closeModal(), 1500);
                 } else if (data.status === "duplicate") {
-                    showStatus("⚠️ Bạn đã bình chọn cho HLV này trước đây rồi!", "amber");
-                } else {
-                    throw new Error("Lỗi hệ thống");
-                }
+                    showStatus("⚠️ Bạn đã bình chọn cho HLV này rồi!", "amber");
+                } else throw new Error();
             } catch (error) {
-                showStatus("❌ Có lỗi kết nối xảy ra. Vui lòng thử lại sau!", "rose");
+                showStatus("❌ Có lỗi kết nối. Vui lòng thử lại!", "rose");
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerText = "GỬI ĐÁNH GIÁ & BÌNH CHỌN 🚀";
+                submitBtn.innerText = "GỬI ĐÁNH GIÁ 🚀";
             }
         }
 
         function showStatus(text, type) {
             const statusEl = document.getElementById('vote-status');
             statusEl.innerText = text;
-            if (type === "rose") {
-                statusEl.className = "text-sm font-black text-center mt-4 text-rose-500 animate-pulse";
-            } else if (type === "blue") {
-                statusEl.className = "text-sm font-black text-center mt-4 text-blue-600";
-            } else if (type === "green") {
-                statusEl.className = "text-sm font-black text-center mt-4 text-green-600";
-            } else if (type === "amber") {
-                statusEl.className = "text-sm font-black text-center mt-4 text-amber-600";
-            }
+            statusEl.className = `text-sm font-black text-center mt-4 text-${type}-500`;
             statusEl.classList.remove('hidden');
         }
 
-// TỰ ĐỘNG BẬT FORM HOẶC TẠO QR KHI LOAD TRANG
         window.addEventListener('DOMContentLoaded', () => {
-            try {
-                // 1. Tải dữ liệu vote từ Google Sheets
-                loadVotes(); 
-                
-                // 2. Tạo mã QR chung một cách an toàn
-                const generalQrEl = document.getElementById('general-qr');
-                if (generalQrEl) {
-                    // Lấy link web hiện tại, bỏ qua các tham số linh tinh phía sau
-                    const baseWebUrl = window.location.origin + window.location.pathname;
-                    generalQrEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(baseWebUrl)}`;
-                } else {
-                    console.warn("⚠️ Không tìm thấy khung ảnh chứa mã QR (id='general-qr') trong HTML.");
-                }
-
-                // 3. Xử lý mở Modal nếu có tham số truyền vào từ mã QR
-                const urlParams = new URLSearchParams(window.location.search);
-                const voteTarget = urlParams.get('vote');
-                if (voteTarget) {
-                    const targetIndex = coachesData.findIndex(c => c.name.replace(/\s+/g, '-') === voteTarget);
-                    if (targetIndex !== -1) {
-                        setTimeout(() => {
-                            openModal(targetIndex);
-                        }, 800);
-                    }
-                }
-            } catch (error) {
-                console.error("❌ Lỗi khi khởi tạo trang:", error);
-            }
+            loadVotes(); 
+            const generalQrEl = document.getElementById('general-qr');
+            if (generalQrEl) generalQrEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(window.location.origin + window.location.pathname)}`;
         });
     </script>
 </body>
