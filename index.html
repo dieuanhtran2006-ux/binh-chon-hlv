@@ -437,14 +437,15 @@ function openModal(index) {
 function showStatus(message, color) {
     const statusEl = document.getElementById('status-msg');
     
-    // Nếu vô tình mất thẻ HTML, nó sẽ dùng cửa sổ Popup (Alert) thay vì báo lỗi sập web
+    // KIỂM TRA BẢO MẬT: Nếu HTML bị thiếu id="status-msg", dùng hàm alert để báo thay vì sập web!
     if (!statusEl) {
-        console.warn("Không tìm thấy thẻ status-msg, chuyển sang dùng Alert.");
-        alert(message);
-        return;
+        console.warn("⚠️ Không tìm thấy thẻ <div id='status-msg'>. Thông báo: " + message);
+        // Hiển thị thông báo bằng hộp thoại trình duyệt
+        alert("Thông báo: " + message);
+        return; 
     }
     
-    // Nếu có thẻ HTML, hiển thị thông báo bình thường
+    // Nếu tìm thấy thẻ bình thường, ghi chữ vào thẻ
     statusEl.innerText = message;
     statusEl.className = `text-center font-bold text-sm mt-3 px-4 py-2 rounded-xl border-2 border-slate-900 block bg-${color}-100 text-${color}-700`;
 }
@@ -503,6 +504,7 @@ async function submitSurvey() {
         // 5. Mở khóa nút bấm trong mọi trường hợp (dù lỗi hay thành công)
         submitBtn.disabled = false;
         submitBtn.innerText = "GỬI ĐÁNH GIÁ 🚀";
+        <div id="status-msg" class="hidden"></div>
     }
 }
         function showStatus(text, type) {
