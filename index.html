@@ -329,6 +329,7 @@
         ];
 
         let activeCoachName = ""; 
+        let currentVotes = {}; // Lưu trữ điểm số hiện tại
 
         // 2. KHỞI TẠO THẺ RA BANNER TRƯỢT
         const extendedData = [...coachesData, ...coachesData]; 
@@ -392,10 +393,11 @@
         async function loadVotes() {
             if (!API_URL) return;
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch(API_URL, { method: "GET", redirect: "follow" });
                 const data = await response.json();
                 if (data.status === "success") {
-                    updateVoteUI(data.votes);
+                    currentVotes = data.votes; // Cập nhật biến toàn cục
+                    updateVoteUI(currentVotes);
                 }
             } catch (error) {
                 console.error("Lỗi khi tải vote:", error);
@@ -405,10 +407,18 @@
         function updateVoteUI(votes) {
             coachesData.forEach(coach => {
                 const idSafeName = coach.name.replace(/\s+/g, '-');
+                
+                // 1. Cập nhật số vote trên thẻ trượt
                 const countEls = document.querySelectorAll(`[id="vote-count-${idSafeName}"]`);
                 countEls.forEach(el => {
                     el.innerText = votes[coach.name] || 0;
                 });
+
+                // 2. Cập nhật số vote trên Bảng Xếp Hạng
+                const leaderboardEl = document.getElementById(`lb-${idSafeName}`);
+                if (leaderboardEl) {
+                    leaderboardEl.innerText = (votes[coach.name] || 0) + " 🗳️";
+                }
             });
         }
 
@@ -493,7 +503,10 @@
                 const data = await response.json();
 
                 if (data.status === "success") {
-                    updateVoteUI(data.votes); 
+                    // CỘNG ĐIỂM NGAY LẬP TỨC TRÊN GIAO DIỆN (Optimistic Update)
+                    currentVotes[activeCoachName] = (currentVotes[activeCoachName] || 0) + 1;
+                    updateVoteUI(currentVotes); 
+                    
                     showStatus("🎉 Bình chọn thành công! Cảm ơn đóng góp của bạn.", "green");
                     
                     setTimeout(() => {
