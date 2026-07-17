@@ -430,7 +430,17 @@ function openModal(index) {
             swiper.autoplay.start(); 
         }
         
-      async function submitSurvey() {
+// Hàm hiển thị thông báo trạng thái dưới nút Gửi
+function showStatus(message, color) {
+    const statusEl = document.getElementById('status-msg');
+    if (!statusEl) return;
+    
+    statusEl.innerText = message;
+    statusEl.className = `text-center font-bold text-sm mt-3 px-4 py-2 rounded-xl border-2 border-slate-900 block bg-${color}-100 text-${color}-700`;
+}
+
+// Hàm gửi dữ liệu đã được gia cố an toàn
+async function submitSurvey() {
     const voterName = document.getElementById('form-name').value.trim();
     const className = document.getElementById('form-class').value.trim();
     const email = document.getElementById('form-email').value.trim();
@@ -439,45 +449,52 @@ function openModal(index) {
     const suggestions = document.getElementById('form-suggestions').value.trim();
     const submitBtn = document.getElementById('submit-btn');
     
-    // Kiểm tra các trường bắt buộc
+    // 1. Kiểm tra các trường bắt buộc
     if (!className || !email || !phone) {
         showStatus("❌ Vui lòng điền Lớp, SĐT và Email!", "rose");
         return;
     }
     
+    // 2. Khóa nút bấm để tránh spam
     submitBtn.disabled = true;
     submitBtn.innerText = "ĐANG GỬI... ⏳";
-    showStatus("Đang ghi nhận...", "blue");
+    showStatus("Đang ghi nhận dữ liệu, vui lòng chờ...", "blue");
     
-    const q1 = document.querySelector('input[name="q1"]:checked').value;
-    const q2 = document.querySelector('input[name="q2"]:checked').value;
-    const q3 = document.querySelector('input[name="q3"]:checked').value;
-    const q4 = document.querySelector('input[name="q4"]:checked').value;
-    const q5 = document.querySelector('input[name="q5"]:checked').value;
+    const q1 = document.querySelector('input[name="q1"]:checked')?.value || "";
+    const q2 = document.querySelector('input[name="q2"]:checked')?.value || "";
+    const q3 = document.querySelector('input[name="q3"]:checked')?.value || "";
+    const q4 = document.querySelector('input[name="q4"]:checked')?.value || "";
+    const q5 = document.querySelector('input[name="q5"]:checked')?.value || "";
 
     try {
-        // ĐÃ SỬA LẠI ĐƯỜNG DẪN: Truyền đầy đủ chính xác tất cả các biến
         const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&voterEmail=${encodeURIComponent(email)}&voterPhone=${encodeURIComponent(phone)}&className=${encodeURIComponent(className)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}&memories=${encodeURIComponent(memories)}&suggestions=${encodeURIComponent(suggestions)}`;
         
+        // 3. Gọi API
         const response = await fetch(fetchUrl);
+        
+        // Bắt lỗi nếu Google trả về HTML (Trang đăng nhập) thay vì JSON
+        if (!response.ok) throw new Error("Lỗi mạng hoặc sai quyền truy cập API.");
+        
         const data = await response.json();
         
+        // 4. Xử lý kết quả
         if (data.status === "success") {
-            currentVotes[activeCoachName] = (currentVotes[activeCoachName] || 0) + 1;
-            updateVoteUI(currentVotes); 
-            showStatus("🎉 Bình chọn thành công!", "green");
-            setTimeout(() => closeModal(), 1500);
-        } else if (data.status === "duplicate") {
-            showStatus("⚠️ Bạn đã bình chọn cho HLV này rồi!", "amber");
-        } else throw new Error();
+            // (Nếu bạn có logic cộng điểm tại frontend thì giữ ở đây)
+            showStatus("🎉 Bình chọn thành công! Cảm ơn bạn.", "emerald");
+            setTimeout(() => closeModal(), 2000);
+        } else {
+            throw new Error(data.message || "Lỗi không xác định từ Server.");
+        }
     } catch (error) {
-        showStatus("❌ Có lỗi kết nối. Vui lòng thử lại!", "rose");
+        console.error("Lỗi chi tiết:", error);
+        showStatus("❌ Lỗi kết nối! Hãy kiểm tra F12 (Console) để xem chi tiết.", "rose");
+        alert("Có lỗi xảy ra: Không thể kết nối tới Google Sheets. Vui lòng kiểm tra lại quyền Deploy!");
     } finally {
+        // 5. Mở khóa nút bấm trong mọi trường hợp (dù lỗi hay thành công)
         submitBtn.disabled = false;
         submitBtn.innerText = "GỬI ĐÁNH GIÁ 🚀";
     }
 }
-
         function showStatus(text, type) {
             const statusEl = document.getElementById('vote-status');
             statusEl.innerText = text;
