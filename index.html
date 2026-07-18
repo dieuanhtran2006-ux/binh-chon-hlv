@@ -11,6 +11,7 @@
 <style>
     body {
         font-family: 'Nunito', sans-serif;
+        /* Đổi background tổng thể sang màu vàng nhạt */
         background-color: #fef08a; 
         overflow-x: hidden;
     }
@@ -44,37 +45,63 @@
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 md:p-8 relative">
 
-    <!-- BACKGROUND HỌA TIẾT (Giữ nguyên) -->
+    <!-- BACKGROUND HỌA TIẾT CẮT DÁN ĐƯỢC GIỮ NGUYÊN TRÊN NỀN VÀNG -->
     <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-80">
-        <!-- ... (Các thẻ svg background giữ nguyên) ... -->
-        <svg class="absolute top-[10%] left-[5%] w-20 h-20 text-blue-500 rotate-12" viewBox="0 0 100 100" fill="currentColor"><path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" /></svg>
-        <svg class="absolute top-[20%] right-[10%] w-24 h-24 text-pink-400 -rotate-12" viewBox="0 0 100 100" fill="currentColor"><path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" /></svg>
+        <!-- Ngôi sao xanh dương -->
+        <svg class="absolute top-[10%] left-[5%] w-20 h-20 text-blue-500 rotate-12" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
+        </svg>
+        <!-- Ngôi sao hồng -->
+        <svg class="absolute top-[20%] right-[10%] w-24 h-24 text-pink-400 -rotate-12" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
+        </svg>
+        <!-- Bông hoa trắng (Đổi màu xíu cho nổi trên nền vàng) -->
         <svg class="absolute top-[60%] left-[10%] w-28 h-28 text-white rotate-45 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor">
             <path d="M50,10 C60,10 65,20 65,30 C75,25 85,30 85,40 C85,50 75,55 65,55 C70,65 65,75 55,75 C45,75 40,65 40,55 C30,55 20,50 20,40 C20,30 30,25 40,30 C40,20 45,10 50,10 Z" />
             <circle cx="50" cy="42" r="12" fill="#f472b6" />
         </svg>
-        <svg class="absolute top-[5%] right-[30%] w-16 h-16 text-teal-400 -rotate-6" viewBox="0 0 100 100" fill="currentColor"><polygon points="50,0 100,20 80,100 20,80 0,30" /></svg>
-        <svg class="absolute bottom-[10%] right-[20%] w-16 h-16 text-white rotate-12 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor"><path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" /></svg>
-        <svg class="absolute bottom-[5%] left-[30%] w-24 h-12 text-emerald-500" viewBox="0 0 100 50" fill="currentColor"><path d="M10,50 C10,20 30,10 50,50 C50,10 70,20 90,50 Z" /></svg>
+        <!-- Khối đa giác xanh ngọc -->
+        <svg class="absolute top-[5%] right-[30%] w-16 h-16 text-teal-400 -rotate-6" viewBox="0 0 100 100" fill="currentColor">
+            <polygon points="50,0 100,20 80,100 20,80 0,30" />
+        </svg>
+        <!-- Ngôi sao trắng nhỏ dưới đáy -->
+        <svg class="absolute bottom-[10%] right-[20%] w-16 h-16 text-white rotate-12 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
+        </svg>
+        <!-- Cụm cỏ xanh -->
+        <svg class="absolute bottom-[5%] left-[30%] w-24 h-12 text-emerald-500" viewBox="0 0 100 50" fill="currentColor">
+            <path d="M10,50 C10,20 30,10 50,50 C50,10 70,20 90,50 Z" />
+        </svg>
     </div>
 
-    <!-- 1. HEADER (Đã xóa QR code ở đây) -->
-    <header class="text-center mt-2 mb-6 w-full max-w-5xl flex flex-col items-center relative z-10">
-        <h1 class="text-4xl md:text-5xl font-black text-rose-500 drop-shadow-[0_4px_0_rgba(30,41,59,1)] tracking-wide uppercase">
-            Bình Chọn HLV 2026
-        </h1>
-        <p class="text-slate-800 font-bold mt-4 text-lg bg-white inline-block px-6 py-2 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)] mb-4 md:mb-6">
-             ✨ Nhấn vào thẻ để bình chọn nhé! ✨
-        </p>
-    </header>
-
     <!-- KHUNG BAO BỌC CHIA 2 CỘT -->
-    <div class="w-full max-w-[1400px] mx-auto flex flex-col-reverse xl:flex-row gap-8 items-center xl:items-start justify-center relative z-10">
+    <div class="w-full max-w-[1400px] mx-auto flex flex-col xl:flex-row gap-8 items-start justify-center relative z-10">
         
-        <!-- CỘT TRÁI (Xếp hạng, Slider & QR Code) -->
+        <!-- CỘT TRÁI -->
         <div class="flex flex-col items-center w-full xl:w-[65%] overflow-hidden">
             
-            <!-- BẢNG XẾP HẠNG -->
+            <header class="text-center my-6 w-full max-w-5xl flex flex-col items-center">
+                <h1 class="text-4xl md:text-5xl font-black text-rose-500 drop-shadow-[0_4px_0_rgba(30,41,59,1)] tracking-wide uppercase">
+                    Bình Chọn HLV 2026
+                </h1>
+                <!-- Nền thẻ này đổi sang trắng để nổi trên nền body vàng -->
+                <p class="text-slate-800 font-bold mt-4 text-lg bg-white inline-block px-6 py-2 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)] mb-6">
+                     ✨ Nhấn vào thẻ để bình chọn nhé! ✨
+                </p>
+                
+                <div class="flex flex-col items-center justify-center mb-4">
+                    <div class="relative bg-teal-400 p-1.5 rounded-3xl shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-1 transition-transform">
+                        <div class="bg-white p-3 rounded-2xl flex flex-col items-center border-2 border-slate-900">
+                            <img id="general-qr" src="" alt="QR Code" class="w-28 h-28 object-contain rounded-lg">
+                            <div class="mt-2 flex items-center gap-2">
+                                <span class="text-xs font-black text-slate-800 uppercase tracking-wider">Quét ngay</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- BẢNG XẾP HẠNG (Vẫn giữ nền trắng) -->
             <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10">
                 <h2 class="text-2xl font-black text-blue-500 mb-4 text-center">🏆 Bảng Xếp Hạng 🏆</h2>
                 <div class="space-y-3">
@@ -103,7 +130,7 @@
             </section>
 
             <!-- SLIDE THẺ HLV -->
-            <main class="w-full max-w-6xl pb-4 pt-4 md:pt-10">
+            <main class="w-full max-w-6xl pb-12 pt-10">
                 <div class="swiper mySwiper !overflow-visible">
                     <div class="swiper-wrapper" id="slider-container">
                         <!-- Javascript sẽ render vào đây -->
@@ -112,23 +139,10 @@
                 </div>
             </main>
 
-            <!-- 🌟 MÃ QR TRÊN PC ĐƯỢC CHUYỂN XUỐNG ĐÂY (NẰM DƯỚI SLIDER) 🌟 -->
-            <div class="hidden md:flex flex-col items-center justify-center mt-12 mb-8 w-full">
-                <h3 class="text-lg font-black text-slate-800 mb-3 uppercase tracking-wider bg-white px-4 py-1 border-2 border-slate-900 rounded-xl shadow-[2px_2px_0px_0px_rgba(30,41,59,1)]">Quét mã để bình chọn trên điện thoại</h3>
-                <div class="relative bg-teal-400 p-1.5 rounded-3xl shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-1 transition-transform">
-                    <div class="bg-white p-3 rounded-2xl flex flex-col items-center border-2 border-slate-900">
-                        <img id="general-qr" src="" alt="QR Code" class="w-28 h-28 object-contain rounded-lg">
-                        <div class="mt-2 flex items-center gap-2">
-                            <span class="text-xs font-black text-slate-800 uppercase tracking-wider">Quét ngay</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div> 
 
-        <!-- CỘT PHẢI: PROFILE PC & MOBILE (Giữ nguyên) -->
-        <div id="desktop-profile" class="flex xl:sticky xl:top-8 bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] flex-col items-center w-full xl:w-[35%] max-w-[420px] transition-opacity duration-300 mb-4 xl:mb-0">            <!-- Nội dung Profile... -->
+        <!-- CỘT PHẢI PROFILE PC (Vẫn giữ nền trắng) -->
+        <div id="desktop-profile" class="hidden xl:flex sticky top-8 bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] flex-col items-center w-full xl:w-[35%] max-w-[420px] transition-opacity duration-300">
             <div class="absolute -top-6 -right-6 text-6xl">🌸</div>
             
             <h3 class="text-xl font-black text-teal-500 mb-4 uppercase border-b-2 border-dashed border-slate-300 pb-2 w-full text-center">Hồ sơ Chi tiết</h3>
@@ -144,6 +158,7 @@
                 <!-- Data -->
             </div>
             
+            <!-- Sự kiện bình chọn dùng biến toàn cục đồng bộ -->
             <button onclick="openModal(currentActiveRealIndex)" class="mt-2 w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-black text-lg rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(30,41,59,1)] transition-all uppercase tracking-wide">
                 Bình chọn ngay! 🚀
             </button>
@@ -151,16 +166,13 @@
 
     </div>
 
-    <!-- POP-UP BÌNH CHỌN (Giữ nguyên) -->
-    <!-- ... Giữ lại nguyên vẹn phần Pop-up (#detail-modal) và Scripts JS của bạn ... -->
-
-    <!-- POP-UP BÌNH CHỌN -->
+    <!-- POP-UP BÌNH CHỌN (Giữ nguyên cấu trúc) -->
     <div id="detail-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-2 sm:p-4 hidden">
         <div class="bg-white border-4 border-slate-900 rounded-[2rem] p-4 md:p-6 w-full max-w-2xl max-h-[95vh] overflow-y-auto shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] relative scrollbar-style">
             
             <button onclick="closeModal()" class="absolute top-4 right-4 bg-rose-400 hover:bg-rose-500 text-white font-black w-10 h-10 rounded-full border-2 border-slate-900 flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(30,41,59,1)] z-10 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(30,41,59,1)] transition-all">✕</button>
             
-            <div class="flex flex-col items-center mb-6 mt-4">
+            <div class="flex flex-col items-center mb-6">
                 <div class="w-24 h-24 rounded-full border-4 border-slate-900 overflow-hidden bg-blue-100 shadow-[3px_3px_0px_0px_rgba(30,41,59,1)] mb-3">
                     <img id="modal-img" src="" class="w-full h-full object-cover" alt="HLV">
                 </div>
@@ -260,33 +272,22 @@
                     <textarea id="form-suggestions" rows="2" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-sm" placeholder="Góp ý thêm..."></textarea>
                 </div>
                 
-                <button onclick="submitSurvey()" id="submit-btn" class="w-full py-3 bg-teal-400 hover:bg-teal-500 text-slate-900 font-black text-lg rounded-2xl border-4 border-slate-900 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(30,41,59,1)] transition-all uppercase">
+                <button onclick="submitSurvey()" id="submit-btn" class="w-full py-3 bg-teal-400 hover:bg-teal-500 text-slate-900 font-black text-lg rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(30,41,59,1)] transition-all">
                     GỬI ĐÁNH GIÁ 🚀
-                    <div id="status-msg" class="hidden"></div>
                 </button>
-
-<!-- DÒNG NÀY RẤT QUAN TRỌNG: Đây là nơi hiện thông báo thành công/thất bại -->
-<div id="status-msg" class="text-center font-bold text-sm mt-3 hidden px-4 py-2 rounded-xl border-2 border-slate-900"></div>
-                <div id="status-msg" class="text-center font-bold text-sm mt-3 hidden px-4 py-2 rounded-xl border-2 border-slate-900"></div>
-                
-                <!-- ẨN QR TRÊN MOBILE (Modal) -->
-                <div class="hidden md:flex mt-5 flex-col items-center gap-1 bg-white p-3 rounded-2xl border-2 border-dashed border-slate-300">
-                    <p class="text-[10px] font-black text-slate-500">MÃ QR BÌNH CHỌN HLV NÀY</p>
-                    <img id="modal-qr" src="" alt="QR" class="w-24 h-24 border-2 border-slate-900 rounded-lg">
-                </div>
-
+                <p id="vote-status" class="text-sm font-black text-center mt-4 hidden"></p>
+            </div>
+            
+            <div class="mt-5 flex flex-col items-center gap-1 bg-white p-3 rounded-2xl border-2 border-dashed border-slate-300">
+                <p class="text-[10px] font-black text-slate-500">MÃ QR BÌNH CHỌN HLV NÀY</p>
+                <img id="modal-qr" src="" alt="QR" class="w-24 h-24 border-2 border-slate-900 rounded-lg">
             </div>
         </div>
     </div>
-    
-    <!-- (Phần <script> chứa Logic JS bạn hãy giữ lại nguyên vẹn file cũ của bạn nhé!) -->
-
-</body>
-</html>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbxCSGtvqaU1C97m4CNfh1J4-y3QNe4tHGC8BSUKYdIVj7Iy6tcmnteCFKJbgnDCmsJZ/exec";
+        const API_URL = "https://script.google.com/macros/s/AKfycbyCKQdWonDVdnFfT9kGUs22tmOJVNzEo2omztBlXxZ8szBVWV9LmNM0OGftCIKNuWZW/exec";
         const coachesData = [
             { name: "HLV Nguyễn Thành Đạt", image: "./image/dat.jpg", quote: "Huấn luyện bạn thành nhà vô địch!", profile: ["🥋 Tứ đẳng huyền đai", "🏆 Kiện tướng Quốc tế", "🇻🇳 Cựu VĐV Đội tuyển"] },
             { name: "HLV Nguyễn Ngọc Ánh", image: "./image/anh.jpg", quote: "Luôn nỗ lực làm những điều chưa làm", profile: ["🥋 Tứ đẳng huyền đai", "🏅 Trọng tài Quốc gia", "📋 Giám khảo"] },
@@ -397,36 +398,34 @@
             });
         }
 
-function openModal(index) {
-    const coach = coachesData[index];
-    if(!coach) return;
-    activeCoachName = coach.name;
-    swiper.autoplay.stop(); 
-    
-    document.getElementById('modal-name').innerText = coach.name;
-    const imgEl = document.getElementById('modal-img');
-    imgEl.src = coach.image;
-    imgEl.onerror = () => { imgEl.src = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" };
-    document.getElementById('modal-quote').innerText = '"' + coach.quote + '"';
-    document.getElementById('modal-profile').innerHTML = coach.profile.map(line => `<div class="mb-1.5 font-bold text-slate-700 flex items-start gap-1">⭐ <span>${line}</span></div>`).join('');
-    
-    document.getElementById('form-name').value = "";
-    document.getElementById('form-class').value = "";
-    document.getElementById('form-email').value = "";
-    document.getElementById('form-phone').value = "";
-    document.getElementById('form-memories').value = "";
-    document.getElementById('form-suggestions').value = "";
-    
-    // ✅ ĐÃ SỬA: Đổi 'vote-status' thành 'status-msg' cho khớp với HTML mới
-    document.getElementById('status-msg').classList.add('hidden');
-    
-    const idSafeName = coach.name.replace(/\s+/g, '-');
-    const baseWebUrl = window.location.origin + window.location.pathname;
-    document.getElementById('modal-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(baseWebUrl + "?vote=" + idSafeName)}`;
-    
-    document.getElementById('detail-modal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-}
+        function openModal(index) {
+            const coach = coachesData[index];
+            if(!coach) return;
+            activeCoachName = coach.name;
+            swiper.autoplay.stop(); 
+            
+            document.getElementById('modal-name').innerText = coach.name;
+            const imgEl = document.getElementById('modal-img');
+            imgEl.src = coach.image;
+            imgEl.onerror = () => { imgEl.src = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=80" };
+            document.getElementById('modal-quote').innerText = '"' + coach.quote + '"';
+            document.getElementById('modal-profile').innerHTML = coach.profile.map(line => `<div class="mb-1.5 font-bold text-slate-700 flex items-start gap-1">⭐ <span>${line}</span></div>`).join('');
+            
+            document.getElementById('form-name').value = "";
+            document.getElementById('form-class').value = "";
+            document.getElementById('form-email').value = "";
+            document.getElementById('form-phone').value = "";
+            document.getElementById('form-memories').value = "";
+            document.getElementById('form-suggestions').value = "";
+            document.getElementById('vote-status').classList.add('hidden');
+            
+            const idSafeName = coach.name.replace(/\s+/g, '-');
+            const baseWebUrl = window.location.origin + window.location.pathname;
+            document.getElementById('modal-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(baseWebUrl + "?vote=" + idSafeName)}`;
+            
+            document.getElementById('detail-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
 
         function closeModal() {
             document.getElementById('detail-modal').classList.add('hidden');
@@ -434,84 +433,56 @@ function openModal(index) {
             swiper.autoplay.start(); 
         }
         
-// Hàm hiển thị thông báo trạng thái dưới nút Gửi
-function showStatus(message) {
-  const statusEl = document.getElementById('status-message'); // Ensure ID is correct
-  if (statusEl) {
-    statusEl.innerText = message;
-  } else {
-    console.error("Status element not found in the DOM.");
-  }
-}
-    
-    // Nếu tìm thấy thẻ bình thường, ghi chữ vào thẻ
-    statusEl.innerText = message;
-    statusEl.className = `text-center font-bold text-sm mt-3 px-4 py-2 rounded-xl border-2 border-slate-900 block bg-${color}-100 text-${color}-700`;
-}
+        async function submitSurvey() {
+            const voterName = document.getElementById('form-name').value.trim();
+            const className = document.getElementById('form-class').value.trim();
+            const email = document.getElementById('form-email').value.trim();
+            const phone = document.getElementById('form-phone').value.trim();
+            const memories = document.getElementById('form-memories').value.trim();
+            const suggestions = document.getElementById('form-suggestions').value.trim();
+            const submitBtn = document.getElementById('submit-btn');
+            
+            if (!className || !email || !phone) {
+                showStatus("❌ Vui lòng điền Lớp, SĐT và Email!", "rose");
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.innerText = "ĐANG GỬI... ⏳";
+            showStatus("Đang ghi nhận...", "blue");
+            
+            const q1 = document.querySelector('input[name="q1"]:checked').value;
+            const q2 = document.querySelector('input[name="q2"]:checked').value;
+            const q3 = document.querySelector('input[name="q3"]:checked').value;
+            const q4 = document.querySelector('input[name="q4"]:checked').value;
+            const q5 = document.querySelector('input[name="q5"]:checked').value;
 
-// Hàm gửi dữ liệu đã được gia cố an toàn
-async function submitSurvey() {
-    const voterName = document.getElementById('form-name').value.trim();
-    const className = document.getElementById('form-class').value.trim();
-    const email = document.getElementById('form-email').value.trim();
-    const phone = document.getElementById('form-phone').value.trim();
-    const memories = document.getElementById('form-memories').value.trim();
-    const suggestions = document.getElementById('form-suggestions').value.trim();
-    const submitBtn = document.getElementById('submit-btn');
-    
-    // 1. Kiểm tra các trường bắt buộc
-    if (!className || !email || !phone) {
-        showStatus("❌ Vui lòng điền Lớp, SĐT và Email!", "rose");
-        return;
-    }
-    
-    // 2. Khóa nút bấm để tránh spam
-    submitBtn.disabled = true;
-    submitBtn.innerText = "ĐANG GỬI... ⏳";
-    showStatus("Đang ghi nhận dữ liệu, vui lòng chờ...", "blue");
-    
-    const q1 = document.querySelector('input[name="q1"]:checked')?.value || "";
-    const q2 = document.querySelector('input[name="q2"]:checked')?.value || "";
-    const q3 = document.querySelector('input[name="q3"]:checked')?.value || "";
-    const q4 = document.querySelector('input[name="q4"]:checked')?.value || "";
-    const q5 = document.querySelector('input[name="q5"]:checked')?.value || "";
-
-    try {
-        const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&voterEmail=${encodeURIComponent(email)}&voterPhone=${encodeURIComponent(phone)}&className=${encodeURIComponent(className)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}&memories=${encodeURIComponent(memories)}&suggestions=${encodeURIComponent(suggestions)}`;
-        
-        // 3. Gọi API
-        const response = await fetch(fetchUrl);
-        
-        // Bắt lỗi nếu Google trả về HTML (Trang đăng nhập) thay vì JSON
-        if (!response.ok) throw new Error("Lỗi mạng hoặc sai quyền truy cập API.");
-        
-        const data = await response.json();
-        
-        // 4. Xử lý kết quả
-        if (data.status === "success") {
-            // (Nếu bạn có logic cộng điểm tại frontend thì giữ ở đây)
-            showStatus("🎉 Bình chọn thành công! Cảm ơn bạn.", "emerald");
-            setTimeout(() => closeModal(), 2000);
-        } else {
-            throw new Error(data.message || "Lỗi không xác định từ Server.");
+            try {
+                const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&contact=${encodeURIComponent(phone)}&message=${encodeURIComponent(memories)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}`;
+                const response = await fetch(fetchUrl);
+                const data = await response.json();
+                
+                if (data.status === "success") {
+                    currentVotes[activeCoachName] = (currentVotes[activeCoachName] || 0) + 1;
+                    updateVoteUI(currentVotes); 
+                    showStatus("🎉 Bình chọn thành công!", "green");
+                    setTimeout(() => closeModal(), 1500);
+                } else if (data.status === "duplicate") {
+                    showStatus("⚠️ Bạn đã bình chọn cho HLV này rồi!", "amber");
+                } else throw new Error();
+            } catch (error) {
+                showStatus("❌ Có lỗi kết nối. Vui lòng thử lại!", "rose");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "GỬI ĐÁNH GIÁ 🚀";
+            }
         }
-    } catch (error) {
-        console.error("Lỗi chi tiết:", error);
-        showStatus("❌ Lỗi kết nối! Hãy kiểm tra F12 (Console) để xem chi tiết.", "rose");
-        alert("Có lỗi xảy ra: Không thể kết nối tới Google Sheets. Vui lòng kiểm tra lại quyền Deploy!");
-    } finally {
-        // 5. Mở khóa nút bấm trong mọi trường hợp (dù lỗi hay thành công)
-        submitBtn.disabled = false;
-        submitBtn.innerText = "GỬI ĐÁNH GIÁ 🚀";
-    }
-}
+
         function showStatus(text, type) {
             const statusEl = document.getElementById('vote-status');
             statusEl.innerText = text;
             statusEl.className = `text-sm font-black text-center mt-4 text-${type}-500`;
             statusEl.classList.remove('hidden');
-            <!-- Ensure this exists in your HTML -->
-<div id="status-message"></div>
         }
 
         window.addEventListener('DOMContentLoaded', () => {
