@@ -11,7 +11,6 @@
 <style>
     body {
         font-family: 'Nunito', sans-serif;
-        /* Đổi background tổng thể sang màu vàng nhạt */
         background-color: #fef08a; 
         overflow-x: hidden;
     }
@@ -44,7 +43,6 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 md:p-8 relative">
-
     <!-- BACKGROUND HỌA TIẾT CẮT DÁN ĐƯỢC GIỮ NGUYÊN TRÊN NỀN VÀNG -->
     <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-80">
         <!-- Ngôi sao xanh dương -->
@@ -73,9 +71,9 @@
             <path d="M10,50 C10,20 30,10 50,50 C50,10 70,20 90,50 Z" />
         </svg>
     </div>
-
-    <!-- KHUNG BAO BỌC CHIA 2 CỘT -->
-    <div class="w-full max-w-[1400px] mx-auto flex flex-col xl:flex-row gap-8 items-start justify-center relative z-10">
+    
+    <!-- KHUNG BAO BỌC CHIA 2 CỘT (Sử dụng flex-col-reverse để đưa Cột Phải lên trên ở Mobile) -->
+    <div class="w-full max-w-[1400px] mx-auto flex flex-col-reverse xl:flex-row gap-8 items-center xl:items-start justify-center relative z-10">
         
         <!-- CỘT TRÁI -->
         <div class="flex flex-col items-center w-full xl:w-[65%] overflow-hidden">
@@ -84,24 +82,13 @@
                 <h1 class="text-4xl md:text-5xl font-black text-rose-500 drop-shadow-[0_4px_0_rgba(30,41,59,1)] tracking-wide uppercase">
                     Bình Chọn HLV 2026
                 </h1>
-                <!-- Nền thẻ này đổi sang trắng để nổi trên nền body vàng -->
                 <p class="text-slate-800 font-bold mt-4 text-lg bg-white inline-block px-6 py-2 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)] mb-6">
                      ✨ Nhấn vào thẻ để bình chọn nhé! ✨
                 </p>
-                
-                <div class="flex flex-col items-center justify-center mb-4">
-                    <div class="relative bg-teal-400 p-1.5 rounded-3xl shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-1 transition-transform">
-                        <div class="bg-white p-3 rounded-2xl flex flex-col items-center border-2 border-slate-900">
-                            <img id="general-qr" src="" alt="QR Code" class="w-28 h-28 object-contain rounded-lg">
-                            <div class="mt-2 flex items-center gap-2">
-                                <span class="text-xs font-black text-slate-800 uppercase tracking-wider">Quét ngay</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Đã di chuyển khối QR xuống dưới -->
             </header>
-
-            <!-- BẢNG XẾP HẠNG (Vẫn giữ nền trắng) -->
+            
+            <!-- BẢNG XẾP HẠNG -->
             <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10">
                 <h2 class="text-2xl font-black text-blue-500 mb-4 text-center">🏆 Bảng Xếp Hạng 🏆</h2>
                 <div class="space-y-3">
@@ -128,9 +115,9 @@
                     </div>
                 </div>
             </section>
-
+            
             <!-- SLIDE THẺ HLV -->
-            <main class="w-full max-w-6xl pb-12 pt-10">
+            <main class="w-full max-w-6xl pb-6 pt-10">
                 <div class="swiper mySwiper !overflow-visible">
                     <div class="swiper-wrapper" id="slider-container">
                         <!-- Javascript sẽ render vào đây -->
@@ -139,10 +126,22 @@
                 </div>
             </main>
 
-        </div> 
+            <!-- MÃ QR TRÊN PC ĐƯỢC CHUYỂN XUỐNG DƯỚI (Phóng to & Ẩn trên Mobile) -->
+            <div class="hidden md:flex flex-col items-center justify-center mt-12 mb-8 w-full">
+                <div class="relative bg-teal-400 p-2 rounded-[2rem] shadow-[6px_6px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-1 transition-transform">
+                    <div class="bg-white p-4 rounded-3xl flex flex-col items-center border-2 border-slate-900">
+                        <img id="general-qr" src="" alt="QR Code" class="w-48 h-48 object-contain rounded-xl">
+                        <div class="mt-3 flex items-center gap-2">
+                            <span class="text-sm font-black text-slate-800 uppercase tracking-wider">Quét mã bình chọn trên điện thoại</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <!-- CỘT PHẢI PROFILE PC (Vẫn giữ nền trắng) -->
-        <div id="desktop-profile" class="hidden xl:flex sticky top-8 bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] flex-col items-center w-full xl:w-[35%] max-w-[420px] transition-opacity duration-300">
+        </div> 
+        
+        <!-- CỘT PHẢI PROFILE (Khắc phục lỗi cuộn trên Mobile và đảm bảo luôn hiện) -->
+        <div id="desktop-profile" class="flex xl:sticky xl:top-8 bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] flex-col items-center w-full xl:w-[35%] max-w-[420px] transition-opacity duration-300 mb-6 xl:mb-0">
             <div class="absolute -top-6 -right-6 text-6xl">🌸</div>
             
             <h3 class="text-xl font-black text-teal-500 mb-4 uppercase border-b-2 border-dashed border-slate-300 pb-2 w-full text-center">Hồ sơ Chi tiết</h3>
@@ -158,14 +157,12 @@
                 <!-- Data -->
             </div>
             
-            <!-- Sự kiện bình chọn dùng biến toàn cục đồng bộ -->
             <button onclick="openModal(currentActiveRealIndex)" class="mt-2 w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-black text-lg rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(30,41,59,1)] active:translate-y-1 active:shadow-[0px_0px_0px_0px_rgba(30,41,59,1)] transition-all uppercase tracking-wide">
                 Bình chọn ngay! 🚀
             </button>
         </div>
-
     </div>
-
+    
     <!-- POP-UP BÌNH CHỌN (Giữ nguyên cấu trúc) -->
     <div id="detail-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-2 sm:p-4 hidden">
         <div class="bg-white border-4 border-slate-900 rounded-[2rem] p-4 md:p-6 w-full max-w-2xl max-h-[95vh] overflow-y-auto shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] relative scrollbar-style">
@@ -209,7 +206,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mb-6">
                     <h4 class="font-black text-slate-900 bg-blue-200 px-3 py-1 rounded-xl inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 2: CHẤM ĐIỂM</h4>
                     <div class="flex flex-col gap-0 bg-slate-50 border-2 border-slate-900 rounded-2xl overflow-hidden" id="rating-container">
@@ -265,7 +261,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mb-6">
                     <h4 class="font-black text-slate-900 bg-yellow-300 px-3 py-1 rounded-xl inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 3: LỜI NHẮN</h4>
                     <textarea id="form-memories" rows="2" class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-sm mb-3" placeholder="Kỷ niệm vui nhất của bé..."></textarea>
@@ -278,16 +273,17 @@
                 <p id="vote-status" class="text-sm font-black text-center mt-4 hidden"></p>
             </div>
             
+            <!-- Mã QR Pop-up -->
             <div class="mt-5 flex flex-col items-center gap-1 bg-white p-3 rounded-2xl border-2 border-dashed border-slate-300">
                 <p class="text-[10px] font-black text-slate-500">MÃ QR BÌNH CHỌN HLV NÀY</p>
                 <img id="modal-qr" src="" alt="QR" class="w-24 h-24 border-2 border-slate-900 rounded-lg">
             </div>
         </div>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycby_ThhoH_lUx-F7cGbgMJECU-mhmV8emVbj9Pp2rK9bujX23XsJrzR52fvE1f1ZhQQ1/exec";
+        const API_URL = "https://script.google.com/macros/s/AKfycbzsSInkCokcS5HJPgs2EcnF52nxOhx5gVWeFzeZKeeDSJELebCB7NZISVLHp7qGf7qn/exec";
         const coachesData = [
             { name: "HLV Nguyễn Thành Đạt", image: "./image/dat.jpg", quote: "Huấn luyện bạn thành nhà vô địch!", profile: ["🥋 Tứ đẳng huyền đai", "🏆 Kiện tướng Quốc tế", "🇻🇳 Cựu VĐV Đội tuyển"] },
             { name: "HLV Nguyễn Ngọc Ánh", image: "./image/anh.jpg", quote: "Luôn nỗ lực làm những điều chưa làm", profile: ["🥋 Tứ đẳng huyền đai", "🏅 Trọng tài Quốc gia", "📋 Giám khảo"] },
@@ -298,8 +294,8 @@
         
         let activeCoachName = ""; 
         let currentVotes = {}; 
-        let currentActiveRealIndex = 0; // Biến đồng bộ Slide và Profile
-
+        let currentActiveRealIndex = 0;
+        
         function updateDesktopProfile(realIndex) {
             const coach = coachesData[realIndex];
             if (!coach) return;
@@ -307,7 +303,6 @@
             
             const profileBox = document.getElementById('desktop-profile');
             if(!profileBox) return;
-
             profileBox.style.opacity = "0.3";
             setTimeout(() => {
                 const imgEl = document.getElementById('desktop-profile-img');
@@ -324,14 +319,12 @@
                 profileBox.style.opacity = "1";
             }, 150);
         }
-
-        const sliderContainer = document.getElementById('slider-container');
         
+        const sliderContainer = document.getElementById('slider-container');
         coachesData.forEach((coach, index) => {
             const idSafeName = coach.name.replace(/\s+/g, '-');
             const slideHtml = `
                 <div class="swiper-slide py-8 !w-[280px] md:!w-[320px]">
-                    <!-- Nền thẻ HLV chuyển sang trắng để nổi trên body vàng -->
                     <div onclick="openModal(${index})" class="cursor-pointer bg-white border-4 border-slate-900 rounded-[2rem] p-5 w-full h-full shadow-[6px_6px_0px_0px_rgba(30,41,59,1)] hover:shadow-[10px_10px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-2 transition-all duration-300 relative">
                         <span class="absolute top-3 right-3 bg-teal-400 text-slate-900 text-[10px] font-black px-2.5 py-1 rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)]">
                             🔥 <span id="vote-count-${idSafeName}">0</span> Votes
@@ -356,7 +349,10 @@
             sliderContainer.innerHTML += slideHtml;
         });
         
+        // Đã thêm hiệu ứng Morph (coverflow) cho Swiper
         var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: false },
             observer: true,
             observeParents: true,
             centeredSlides: true,
@@ -367,12 +363,8 @@
             autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
             pagination: { el: ".swiper-pagination", clickable: true },
             on: {
-                init: function () {
-                    updateDesktopProfile(this.realIndex);
-                },
-                slideChange: function () {
-                    updateDesktopProfile(this.realIndex);
-                }
+                init: function () { updateDesktopProfile(this.realIndex); },
+                slideChange: function () { updateDesktopProfile(this.realIndex); }
             }
         });
         
@@ -387,7 +379,7 @@
                 }
             } catch (error) {}
         }
-
+        
         function updateVoteUI(votes) {
             coachesData.forEach(coach => {
                 const idSafeName = coach.name.replace(/\s+/g, '-');
@@ -397,7 +389,7 @@
                 if (leaderboardEl) leaderboardEl.innerText = (votes[coach.name] || 0) + " 🗳️";
             });
         }
-
+        
         function openModal(index) {
             const coach = coachesData[index];
             if(!coach) return;
@@ -426,7 +418,7 @@
             document.getElementById('detail-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
-
+        
         function closeModal() {
             document.getElementById('detail-modal').classList.add('hidden');
             document.body.style.overflow = 'auto';
@@ -456,9 +448,9 @@
             const q3 = document.querySelector('input[name="q3"]:checked').value;
             const q4 = document.querySelector('input[name="q4"]:checked').value;
             const q5 = document.querySelector('input[name="q5"]:checked').value;
-
             try {
-                const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&contact=${encodeURIComponent(phone)}&message=${encodeURIComponent(memories)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}`;
+                // ĐÃ SỬA: Bổ sung các biến bị thiếu (className, voterEmail, voterPhone, suggestions) vào Fetch URL
+                const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&voterEmail=${encodeURIComponent(email)}&voterPhone=${encodeURIComponent(phone)}&className=${encodeURIComponent(className)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}&memories=${encodeURIComponent(memories)}&suggestions=${encodeURIComponent(suggestions)}`;
                 const response = await fetch(fetchUrl);
                 const data = await response.json();
                 
@@ -477,14 +469,14 @@
                 submitBtn.innerText = "GỬI ĐÁNH GIÁ 🚀";
             }
         }
-
+        
         function showStatus(text, type) {
             const statusEl = document.getElementById('vote-status');
             statusEl.innerText = text;
             statusEl.className = `text-sm font-black text-center mt-4 text-${type}-500`;
             statusEl.classList.remove('hidden');
         }
-
+        
         window.addEventListener('DOMContentLoaded', () => {
             loadVotes(); 
             const generalQrEl = document.getElementById('general-qr');
