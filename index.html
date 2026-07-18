@@ -15,16 +15,13 @@
         overflow-x: hidden;
     }
     
-    .swiper-wrapper { transition-timing-function: linear !important; }
+    /* ĐÃ SỬA: Xóa bỏ transition thủ công gây xung đột với Swiper, nhường lại việc tính toán cho JS */
     .swiper-slide {
-        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease; 
-        transform: scale(0.8) translateY(20px);
         opacity: 0.4;
         z-index: 10;
     }
     .swiper-slide-active {
-        transform: scale(1.1) translateY(-10px) !important;
-        opacity: 1;
+        opacity: 1 !important;
         z-index: 50; 
     }
     .swiper-slide-active > div {
@@ -81,11 +78,10 @@
                 </p>
             </header>
             
-            <!-- BẢNG XẾP HẠNG ĐÃ ĐƯỢC CHUYỂN SANG DẠNG ĐỘNG -->
+            <!-- BẢNG XẾP HẠNG ĐỘNG -->
             <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10">
                 <h2 class="text-2xl font-black text-blue-500 mb-4 text-center">🏆 Bảng Xếp Hạng 🏆</h2>
                 <div class="space-y-3" id="leaderboard-list">
-                    <!-- Javascript sẽ tự động sắp xếp và render các HLV vào đây -->
                     <div class="text-center font-bold text-slate-500">Đang tải dữ liệu...</div>
                 </div>
             </section>
@@ -247,7 +243,8 @@
                 <p id="vote-status" class="text-sm font-black text-center mt-4 hidden"></p>
             </div>
             
-            <div class="mt-5 flex flex-col items-center gap-1 bg-white p-3 rounded-2xl border-2 border-dashed border-slate-300">
+            <!-- ĐÃ SỬA: Thêm hidden md:flex để ẩn QR này trên mobile nhưng giữ lại trên PC -->
+            <div class="hidden md:flex mt-5 flex-col items-center gap-1 bg-white p-3 rounded-2xl border-2 border-dashed border-slate-300">
                 <p class="text-[10px] font-black text-slate-500">MÃ QR BÌNH CHỌN HLV NÀY</p>
                 <img id="modal-qr" src="" alt="QR" class="w-24 h-24 border-2 border-slate-900 rounded-lg">
             </div>
@@ -255,7 +252,6 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- THÊM THƯ VIỆN PHÁO HOA CHÚC MỪNG -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <script>
@@ -271,7 +267,7 @@
         let activeCoachName = ""; 
         let currentVotes = {}; 
         let currentActiveRealIndex = 0;
-        let currentTop1 = null; // Biến nhớ Top 1 hiện tại để kích hoạt pháo hoa
+        let currentTop1 = null; 
         
         function updateDesktopProfile(realIndex) {
             const coach = coachesData[realIndex];
@@ -326,6 +322,7 @@
             sliderContainer.innerHTML += slideHtml;
         });
         
+        // ĐÃ SỬA: Cấu hình lại thư viện Swiper để chuyển cảnh mượt mà
         var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
             coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: false },
@@ -334,9 +331,14 @@
             centeredSlides: true,
             slidesPerView: "auto",
             loop: true, 
+            loopedSlides: coachesData.length, // Tránh lỗi chớp slide ở vòng lặp
             spaceBetween: 40,        
-            speed: 1000, 
-            autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
+            speed: 800, // Làm mượt thời gian chuyển cảnh (vuốt)
+            autoplay: { 
+                delay: 5000, // Tăng thời gian dừng lại lên 5 giây để đủ thời gian đọc profile
+                disableOnInteraction: false, 
+                pauseOnMouseEnter: true 
+            },
             pagination: { el: ".swiper-pagination", clickable: true },
             on: {
                 init: function () { updateDesktopProfile(this.realIndex); },
@@ -356,7 +358,6 @@
             } catch (error) {}
         }
         
-        // HÀM KÍCH HOẠT HIỆU ỨNG CHÚC MỪNG
         function triggerCelebration(coachName) {
             if (window.confetti) {
                 confetti({
@@ -368,7 +369,6 @@
                 });
             }
             
-            // Hiển thị thanh thông báo nhảy lên
             const toast = document.createElement('div');
             toast.className = "fixed top-10 left-1/2 -translate-x-1/2 z-[10000] bg-rose-500 text-white px-6 py-3 rounded-2xl border-4 border-slate-900 shadow-[6px_6px_0px_0px_rgba(30,41,59,1)] font-black text-lg text-center animate-bounce transition-opacity duration-1000";
             toast.innerHTML = `🎉 Tuyệt vời! <br/> ${coachName} vừa vươn lên Top 1! 🎉`;
@@ -380,22 +380,18 @@
             }, 4000);
         }
 
-        // HÀM CẬP NHẬT GIAO DIỆN VÀ SẮP XẾP BẢNG XẾP HẠNG
         function updateVoteUI(votes) {
-            // Cập nhật số liệu trên thẻ trượt
             coachesData.forEach(coach => {
                 const idSafeName = coach.name.replace(/\s+/g, '-');
                 const countEls = document.querySelectorAll(`[id="vote-count-${idSafeName}"]`);
                 countEls.forEach(el => el.innerText = votes[coach.name] || 0);
             });
 
-            // Logic sắp xếp mảng HLV theo số Vote
             let sortedCoaches = [...coachesData].map(c => ({
                 name: c.name,
                 votes: votes[c.name] || 0
             })).sort((a, b) => b.votes - a.votes);
 
-            // Kiểm tra xem ai đang là Top 1 để kích hoạt pháo hoa
             const newTop1 = sortedCoaches[0].name;
             if (currentTop1 !== null && currentTop1 !== newTop1 && sortedCoaches[0].votes > 0) {
                 triggerCelebration(newTop1);
@@ -404,7 +400,6 @@
                 currentTop1 = newTop1;
             }
 
-            // Render lại HTML cho Bảng Xếp Hạng (Lấy Top 3)
             const lbContainer = document.getElementById('leaderboard-list');
             if (lbContainer) {
                 const rankStyles = [
@@ -472,7 +467,6 @@
             const suggestions = document.getElementById('form-suggestions').value.trim();
             const submitBtn = document.getElementById('submit-btn');
             
-            // ĐÃ FIX: Chặn Form trống tuyệt đối từ Frontend. Phải điền đầy đủ Tên, Lớp, Email, SĐT mới được gửi
             if (!voterName || !className || !email || !phone) {
                 showStatus("❌ Vui lòng điền đầy đủ Tên, Lớp, Email và SĐT!", "rose");
                 return;
