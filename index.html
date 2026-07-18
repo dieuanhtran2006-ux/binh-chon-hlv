@@ -62,6 +62,15 @@
         </svg>
     </div>
     
+    <!-- HEADER: LOGO & TÊN TRUNG TÂM -->
+    <div class="w-full max-w-[1400px] mx-auto flex items-center justify-start gap-4 mb-4 md:mb-8 z-20 relative">
+        <img src="./image/logo.png" alt="Logo Taekwondo Kids" class="h-16 md:h-24 w-auto object-contain">
+        <div class="font-black text-slate-900 uppercase text-sm md:text-xl leading-tight drop-shadow-sm">
+            Trung tâm võ thuật<br/>
+            Taekwondo Kids Việt Nam
+        </div>
+    </div>
+
     <!-- KHUNG BAO BỌC CHIA 2 CỘT -->
     <div class="w-full max-w-[1400px] mx-auto flex flex-col-reverse xl:flex-row gap-8 items-center xl:items-start justify-center relative z-10">
         
@@ -109,7 +118,7 @@
 
         </div> 
         
-        <!-- CỘT PHẢI PROFILE (Đã xóa class transition thủ công để nhường cho JS điều khiển) -->
+        <!-- CỘT PHẢI PROFILE -->
         <div id="desktop-profile" class="flex xl:sticky xl:top-8 bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] flex-col items-center w-full xl:w-[35%] max-w-[420px] mb-6 xl:mb-0 relative">
             <div class="absolute -top-6 -right-6 text-6xl z-10">🌸</div>
             
@@ -267,7 +276,6 @@
         let currentActiveRealIndex = 0;
         let currentTop1 = null; 
         
-        // ĐÃ CẬP NHẬT: Kỹ thuật Morph để chuyển đổi chiều cao (height) mượt mà
         function updateDesktopProfile(realIndex) {
             const coach = coachesData[realIndex];
             if (!coach) return;
@@ -276,17 +284,14 @@
             const profileBox = document.getElementById('desktop-profile');
             if(!profileBox) return;
             
-            // Bước 1: Đóng băng chiều cao hiện tại để không bị giật
             const currentHeight = profileBox.offsetHeight;
             profileBox.style.height = currentHeight + 'px';
-            profileBox.style.overflow = 'hidden'; // Tránh nội dung cũ bị tràn khi thu nhỏ
+            profileBox.style.overflow = 'hidden'; 
             
-            // Bật transition mượt cho cả height và opacity
             profileBox.style.transition = 'height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease';
-            profileBox.style.opacity = "0"; // Mờ đi
+            profileBox.style.opacity = "0"; 
             
             setTimeout(() => {
-                // Bước 2: Bơm nội dung của HLV mới vào (lúc này bảng đang tàng hình)
                 const imgEl = document.getElementById('desktop-profile-img');
                 if(imgEl) {
                     imgEl.src = coach.image;
@@ -298,23 +303,19 @@
                 const profileContainer = document.getElementById('desktop-profile-details');
                 profileContainer.innerHTML = coach.profile.map(line => `<div class="mb-2 font-bold text-slate-700 flex items-start gap-2">⭐ <span class="text-sm">${line}</span></div>`).join('');
                 
-                // Bước 3: Tính toán nội suy chiều cao mới
-                profileBox.style.height = 'auto'; // Thả auto trong tích tắc
-                const targetHeight = profileBox.offsetHeight; // Lấy số đo thực tế mới
-                profileBox.style.height = currentHeight + 'px'; // Trả về số đo cũ ngay lập tức
+                profileBox.style.height = 'auto'; 
+                const targetHeight = profileBox.offsetHeight; 
+                profileBox.style.height = currentHeight + 'px'; 
                 
-                // Ép trình duyệt phải cập nhật giao diện (Reflow)
                 profileBox.offsetHeight; 
                 
-                // Kéo dãn/co lại bảng thành kích thước mới và hiện lên
                 profileBox.style.height = targetHeight + 'px';
                 profileBox.style.opacity = "1";
                 
-                // Bước 4: Sau khi hiệu ứng giãn/co kết thúc, xóa thông số tĩnh để bảng duy trì responsive
                 setTimeout(() => {
                     profileBox.style.height = 'auto';
                     profileBox.style.overflow = 'visible';
-                }, 400); // Khớp với 0.4s của transition
+                }, 400); 
                 
             }, 200);
         }
