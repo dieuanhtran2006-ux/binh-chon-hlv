@@ -43,36 +43,30 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 md:p-8 relative">
-    <!-- BACKGROUND HỌA TIẾT CẮT DÁN ĐƯỢC GIỮ NGUYÊN TRÊN NỀN VÀNG -->
+    <!-- BACKGROUND HỌA TIẾT CẮT DÁN -->
     <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-80">
-        <!-- Ngôi sao xanh dương -->
         <svg class="absolute top-[10%] left-[5%] w-20 h-20 text-blue-500 rotate-12" viewBox="0 0 100 100" fill="currentColor">
             <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
         </svg>
-        <!-- Ngôi sao hồng -->
         <svg class="absolute top-[20%] right-[10%] w-24 h-24 text-pink-400 -rotate-12" viewBox="0 0 100 100" fill="currentColor">
             <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
         </svg>
-        <!-- Bông hoa trắng (Đổi màu xíu cho nổi trên nền vàng) -->
         <svg class="absolute top-[60%] left-[10%] w-28 h-28 text-white rotate-45 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor">
             <path d="M50,10 C60,10 65,20 65,30 C75,25 85,30 85,40 C85,50 75,55 65,55 C70,65 65,75 55,75 C45,75 40,65 40,55 C30,55 20,50 20,40 C20,30 30,25 40,30 C40,20 45,10 50,10 Z" />
             <circle cx="50" cy="42" r="12" fill="#f472b6" />
         </svg>
-        <!-- Khối đa giác xanh ngọc -->
         <svg class="absolute top-[5%] right-[30%] w-16 h-16 text-teal-400 -rotate-6" viewBox="0 0 100 100" fill="currentColor">
             <polygon points="50,0 100,20 80,100 20,80 0,30" />
         </svg>
-        <!-- Ngôi sao trắng nhỏ dưới đáy -->
         <svg class="absolute bottom-[10%] right-[20%] w-16 h-16 text-white rotate-12 drop-shadow-md" viewBox="0 0 100 100" fill="currentColor">
             <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
         </svg>
-        <!-- Cụm cỏ xanh -->
         <svg class="absolute bottom-[5%] left-[30%] w-24 h-12 text-emerald-500" viewBox="0 0 100 50" fill="currentColor">
             <path d="M10,50 C10,20 30,10 50,50 C50,10 70,20 90,50 Z" />
         </svg>
     </div>
     
-    <!-- KHUNG BAO BỌC CHIA 2 CỘT (Sử dụng flex-col-reverse để đưa Cột Phải lên trên ở Mobile) -->
+    <!-- KHUNG BAO BỌC CHIA 2 CỘT -->
     <div class="w-full max-w-[1400px] mx-auto flex flex-col-reverse xl:flex-row gap-8 items-center xl:items-start justify-center relative z-10">
         
         <!-- CỘT TRÁI -->
@@ -85,34 +79,14 @@
                 <p class="text-slate-800 font-bold mt-4 text-lg bg-white inline-block px-6 py-2 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(30,41,59,1)] mb-6">
                      ✨ Nhấn vào thẻ để bình chọn nhé! ✨
                 </p>
-                <!-- Đã di chuyển khối QR xuống dưới -->
             </header>
             
-            <!-- BẢNG XẾP HẠNG -->
+            <!-- BẢNG XẾP HẠNG ĐÃ ĐƯỢC CHUYỂN SANG DẠNG ĐỘNG -->
             <section class="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[0_8px_0_0_rgba(30,41,59,1)] mb-10">
                 <h2 class="text-2xl font-black text-blue-500 mb-4 text-center">🏆 Bảng Xếp Hạng 🏆</h2>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between bg-yellow-100 border-2 border-slate-900 p-3 rounded-2xl">
-                        <div class="flex items-center gap-3 font-bold text-slate-800">
-                            <span class="bg-yellow-400 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">1</span>
-                            HLV Nguyễn Thành Đạt
-                        </div>
-                        <span id="lb-HLV-Nguyễn-Thành-Đạt" class="text-rose-500 font-black">0 🗳️</span>
-                    </div>
-                    <div class="flex items-center justify-between bg-pink-100 border-2 border-slate-900 p-3 rounded-2xl">
-                        <div class="flex items-center gap-3 font-bold text-slate-800">
-                            <span class="bg-pink-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">2</span>
-                            HLV Hoàng Văn Hiếu
-                        </div>
-                        <span id="lb-HLV-Hoàng-Văn-Hiếu" class="text-blue-600 font-black">0 🗳️</span>
-                    </div>
-                    <div class="flex items-center justify-between bg-emerald-100 border-2 border-slate-900 p-3 rounded-2xl">
-                        <div class="flex items-center gap-3 font-bold text-slate-800">
-                            <span class="bg-emerald-300 w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">3</span>
-                            HLV Nguyễn Ngọc Ánh
-                        </div>
-                        <span id="lb-HLV-Nguyễn-Ngọc-Ánh" class="text-emerald-700 font-black">0 🗳️</span>
-                    </div>
+                <div class="space-y-3" id="leaderboard-list">
+                    <!-- Javascript sẽ tự động sắp xếp và render các HLV vào đây -->
+                    <div class="text-center font-bold text-slate-500">Đang tải dữ liệu...</div>
                 </div>
             </section>
             
@@ -126,7 +100,7 @@
                 </div>
             </main>
 
-            <!-- MÃ QR TRÊN PC ĐƯỢC CHUYỂN XUỐNG DƯỚI (Phóng to & Ẩn trên Mobile) -->
+            <!-- MÃ QR TRÊN PC -->
             <div class="hidden md:flex flex-col items-center justify-center mt-12 mb-8 w-full">
                 <div class="relative bg-teal-400 p-2 rounded-[2rem] shadow-[6px_6px_0px_0px_rgba(30,41,59,1)] hover:-translate-y-1 transition-transform">
                     <div class="bg-white p-4 rounded-3xl flex flex-col items-center border-2 border-slate-900">
@@ -140,7 +114,7 @@
 
         </div> 
         
-        <!-- CỘT PHẢI PROFILE (Khắc phục lỗi cuộn trên Mobile và đảm bảo luôn hiện) -->
+        <!-- CỘT PHẢI PROFILE -->
         <div id="desktop-profile" class="flex xl:sticky xl:top-8 bg-white border-4 border-slate-900 rounded-[2rem] p-6 shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] flex-col items-center w-full xl:w-[35%] max-w-[420px] transition-opacity duration-300 mb-6 xl:mb-0">
             <div class="absolute -top-6 -right-6 text-6xl">🌸</div>
             
@@ -163,7 +137,7 @@
         </div>
     </div>
     
-    <!-- POP-UP BÌNH CHỌN (Giữ nguyên cấu trúc) -->
+    <!-- POP-UP BÌNH CHỌN -->
     <div id="detail-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-2 sm:p-4 hidden">
         <div class="bg-white border-4 border-slate-900 rounded-[2rem] p-4 md:p-6 w-full max-w-2xl max-h-[95vh] overflow-y-auto shadow-[8px_8px_0px_0px_rgba(30,41,59,1)] relative scrollbar-style">
             
@@ -189,7 +163,7 @@
                     <h4 class="font-black text-slate-900 bg-pink-200 px-3 py-1 rounded-xl inline-block border-2 border-slate-900 mb-3 text-sm">PHẦN 1: THÔNG TIN</h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-black text-slate-700 uppercase mb-1">Tên của bạn</label>
+                            <label class="block text-xs font-black text-slate-700 uppercase mb-1">Tên của bạn *</label>
                             <input type="text" id="form-name" placeholder="Bé..." class="w-full px-3 py-2 border-2 border-slate-900 rounded-xl font-bold text-slate-800 text-sm">
                         </div>
                         <div>
@@ -273,7 +247,6 @@
                 <p id="vote-status" class="text-sm font-black text-center mt-4 hidden"></p>
             </div>
             
-            <!-- Mã QR Pop-up -->
             <div class="mt-5 flex flex-col items-center gap-1 bg-white p-3 rounded-2xl border-2 border-dashed border-slate-300">
                 <p class="text-[10px] font-black text-slate-500">MÃ QR BÌNH CHỌN HLV NÀY</p>
                 <img id="modal-qr" src="" alt="QR" class="w-24 h-24 border-2 border-slate-900 rounded-lg">
@@ -282,8 +255,11 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- THÊM THƯ VIỆN PHÁO HOA CHÚC MỪNG -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbzsSInkCokcS5HJPgs2EcnF52nxOhx5gVWeFzeZKeeDSJELebCB7NZISVLHp7qGf7qn/exec";
+        const API_URL = "https://script.google.com/macros/s/AKfycby_ThhoH_lUx-F7cGbgMJECU-mhmV8emVbj9Pp2rK9bujX23XsJrzR52fvE1f1ZhQQ1/exec";
         const coachesData = [
             { name: "HLV Nguyễn Thành Đạt", image: "./image/dat.jpg", quote: "Huấn luyện bạn thành nhà vô địch!", profile: ["🥋 Tứ đẳng huyền đai", "🏆 Kiện tướng Quốc tế", "🇻🇳 Cựu VĐV Đội tuyển"] },
             { name: "HLV Nguyễn Ngọc Ánh", image: "./image/anh.jpg", quote: "Luôn nỗ lực làm những điều chưa làm", profile: ["🥋 Tứ đẳng huyền đai", "🏅 Trọng tài Quốc gia", "📋 Giám khảo"] },
@@ -295,6 +271,7 @@
         let activeCoachName = ""; 
         let currentVotes = {}; 
         let currentActiveRealIndex = 0;
+        let currentTop1 = null; // Biến nhớ Top 1 hiện tại để kích hoạt pháo hoa
         
         function updateDesktopProfile(realIndex) {
             const coach = coachesData[realIndex];
@@ -349,7 +326,6 @@
             sliderContainer.innerHTML += slideHtml;
         });
         
-        // Đã thêm hiệu ứng Morph (coverflow) cho Swiper
         var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
             coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: false },
@@ -380,14 +356,76 @@
             } catch (error) {}
         }
         
+        // HÀM KÍCH HOẠT HIỆU ỨNG CHÚC MỪNG
+        function triggerCelebration(coachName) {
+            if (window.confetti) {
+                confetti({
+                    particleCount: 200,
+                    spread: 100,
+                    origin: { y: 0.3 },
+                    zIndex: 10000,
+                    colors: ['#f472b6', '#38bdf8', '#34d399', '#facc15']
+                });
+            }
+            
+            // Hiển thị thanh thông báo nhảy lên
+            const toast = document.createElement('div');
+            toast.className = "fixed top-10 left-1/2 -translate-x-1/2 z-[10000] bg-rose-500 text-white px-6 py-3 rounded-2xl border-4 border-slate-900 shadow-[6px_6px_0px_0px_rgba(30,41,59,1)] font-black text-lg text-center animate-bounce transition-opacity duration-1000";
+            toast.innerHTML = `🎉 Tuyệt vời! <br/> ${coachName} vừa vươn lên Top 1! 🎉`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 1000);
+            }, 4000);
+        }
+
+        // HÀM CẬP NHẬT GIAO DIỆN VÀ SẮP XẾP BẢNG XẾP HẠNG
         function updateVoteUI(votes) {
+            // Cập nhật số liệu trên thẻ trượt
             coachesData.forEach(coach => {
                 const idSafeName = coach.name.replace(/\s+/g, '-');
                 const countEls = document.querySelectorAll(`[id="vote-count-${idSafeName}"]`);
                 countEls.forEach(el => el.innerText = votes[coach.name] || 0);
-                const leaderboardEl = document.getElementById(`lb-${idSafeName}`);
-                if (leaderboardEl) leaderboardEl.innerText = (votes[coach.name] || 0) + " 🗳️";
             });
+
+            // Logic sắp xếp mảng HLV theo số Vote
+            let sortedCoaches = [...coachesData].map(c => ({
+                name: c.name,
+                votes: votes[c.name] || 0
+            })).sort((a, b) => b.votes - a.votes);
+
+            // Kiểm tra xem ai đang là Top 1 để kích hoạt pháo hoa
+            const newTop1 = sortedCoaches[0].name;
+            if (currentTop1 !== null && currentTop1 !== newTop1 && sortedCoaches[0].votes > 0) {
+                triggerCelebration(newTop1);
+            }
+            if (sortedCoaches[0].votes > 0) {
+                currentTop1 = newTop1;
+            }
+
+            // Render lại HTML cho Bảng Xếp Hạng (Lấy Top 3)
+            const lbContainer = document.getElementById('leaderboard-list');
+            if (lbContainer) {
+                const rankStyles = [
+                    { bg: "bg-yellow-100", badge: "bg-yellow-400", text: "text-rose-500" },
+                    { bg: "bg-pink-100", badge: "bg-pink-300", text: "text-blue-600" },
+                    { bg: "bg-emerald-100", badge: "bg-emerald-300", text: "text-emerald-700" }
+                ];
+                
+                lbContainer.innerHTML = sortedCoaches.slice(0, 3).map((coach, i) => {
+                    const style = rankStyles[i] || rankStyles[2];
+                    return `
+                    <div class="flex items-center justify-between ${style.bg} border-2 border-slate-900 p-3 rounded-2xl transition-all duration-500 transform hover:scale-[1.02]">
+                        <div class="flex items-center gap-3 font-bold text-slate-800">
+                            <span class="${style.badge} w-8 h-8 flex items-center justify-center rounded-full border-2 border-slate-900">${i + 1}</span>
+                            ${coach.name}
+                        </div>
+                        <span class="${style.text} font-black">${coach.votes} 🗳️</span>
+                    </div>
+                    `;
+                }).join('');
+            }
         }
         
         function openModal(index) {
@@ -434,8 +472,9 @@
             const suggestions = document.getElementById('form-suggestions').value.trim();
             const submitBtn = document.getElementById('submit-btn');
             
-            if (!className || !email || !phone) {
-                showStatus("❌ Vui lòng điền Lớp, SĐT và Email!", "rose");
+            // ĐÃ FIX: Chặn Form trống tuyệt đối từ Frontend. Phải điền đầy đủ Tên, Lớp, Email, SĐT mới được gửi
+            if (!voterName || !className || !email || !phone) {
+                showStatus("❌ Vui lòng điền đầy đủ Tên, Lớp, Email và SĐT!", "rose");
                 return;
             }
             
@@ -449,7 +488,6 @@
             const q4 = document.querySelector('input[name="q4"]:checked').value;
             const q5 = document.querySelector('input[name="q5"]:checked').value;
             try {
-                // ĐÃ SỬA: Bổ sung các biến bị thiếu (className, voterEmail, voterPhone, suggestions) vào Fetch URL
                 const fetchUrl = `${API_URL}?coach=${encodeURIComponent(activeCoachName)}&voterName=${encodeURIComponent(voterName)}&voterEmail=${encodeURIComponent(email)}&voterPhone=${encodeURIComponent(phone)}&className=${encodeURIComponent(className)}&q1=${q1}&q2=${q2}&q3=${q3}&q4=${q4}&q5=${q5}&memories=${encodeURIComponent(memories)}&suggestions=${encodeURIComponent(suggestions)}`;
                 const response = await fetch(fetchUrl);
                 const data = await response.json();
